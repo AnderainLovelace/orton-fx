@@ -1,0 +1,1061 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: E:\Anderain\fx-9860\Orton\draw.c
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          draw.c     1    #include <fxlib.h>
+          draw.c     2    #include <string.h>
+          draw.c     3    #include "draw.h"
+          draw.c     4    
+          draw.c     5    #define VRAM_SIZE 1024
+          draw.c     6    unsigned char vbuf[VRAM_SIZE];
+          draw.c     7    
+          draw.c     8    void allclr_vbuf()
+P   00000000              _allclr_vbuf:                    ; function: allclr_vbuf
+                                                           ; frame size=0
+          draw.c     9    {
+          draw.c    10            memset(vbuf,0,VRAM_SIZE);
+    00000000 9660                   MOV.W       L482,R6    ; H'0400
+    00000002 D431                   MOV.L       L482+4,R4  ; _vbuf
+    00000004 D331                   MOV.L       L482+8,R3  ; _memset
+    00000006 432B                   JMP         @R3
+    00000008 E500                   MOV         #0,R5
+          draw.c    11    }
+          draw.c    12    
+          draw.c    13    void putdispvram_vbuf ()
+    0000000A              _putdispvram_vbuf:               ; function: putdispvram_vbuf
+                                                           ; frame size=28
+          draw.c    14    {
+          draw.c    15            DISPGRAPH dg;
+          draw.c    16    
+          draw.c    17            dg.x                                    = 0;
+    0000000A E400                   MOV         #0,R4
+          draw.c    18            dg.y                                    = 0;
+          draw.c    19            dg.GraphData.width              = 128;
+    0000000C 935B                   MOV.W       L482+2,R3  ; H'0080
+          draw.c    20            dg.GraphData.height             = 64;
+    0000000E E240                   MOV         #64,R2
+    00000010 4F22                   STS.L       PR,@-R15
+          draw.c    21            dg.GraphData.pBitmap    = vbuf;
+          draw.c    22            dg.WriteModify                  = 0;
+    00000012 E014                   MOV         #20,R0
+    00000014 7FE8                   ADD         #-24,R15
+    00000016 2F42                   MOV.L       R4,@R15
+    00000018 1F41                   MOV.L       R4,@(4,R15)
+    0000001A 1F32                   MOV.L       R3,@(8,R15)
+    0000001C 1F23                   MOV.L       R2,@(12,R15)
+    0000001E D32A                   MOV.L       L482+4,R3  ; _vbuf
+    00000020 1F34                   MOV.L       R3,@(16,R15)
+          draw.c    23            dg.WriteKind                    = IMB_WRITEKIND_OR;
+    00000022 E302                   MOV         #2,R3
+    00000024 0F44                   MOV.B       R4,@(R0,R15)
+    00000026 E015                   MOV         #21,R0
+    00000028 0F34                   MOV.B       R3,@(R0,R15)
+          draw.c    24    
+          draw.c    25            Bdisp_WriteGraph_VRAM(&dg);
+    0000002A D329                   MOV.L       L482+12,R3 ; _Bdisp_WriteGraph_VRAM
+    0000002C 430B                   JSR         @R3
+    0000002E 64F3                   MOV         R15,R4
+          draw.c    26    }
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000030 7F18                   ADD         #24,R15
+    00000032 4F26                   LDS.L       @R15+,PR
+    00000034 000B                   RTS
+    00000036 0009                   NOP
+          draw.c    27    
+          draw.c    28    void write_graph(int x,int y,int width,int height,unsigned char * pGraph)
+    00000038              _write_graph:                    ; function: write_graph
+                                                           ; frame size=28
+    00000038 4F22                   STS.L       PR,@-R15
+          draw.c    29    {
+          draw.c    30            DISPGRAPH dg;
+          draw.c    31    
+          draw.c    32            dg.x                                    = x;
+          draw.c    33            dg.y                                    = y;
+          draw.c    34            dg.GraphData.width              = width;
+          draw.c    35            dg.GraphData.height             = height;
+          draw.c    36            dg.GraphData.pBitmap    = pGraph;
+          draw.c    37            dg.WriteModify                  = 0;
+    0000003A E200                   MOV         #0,R2
+    0000003C 7FE8                   ADD         #-24,R15
+    0000003E E014                   MOV         #20,R0
+    00000040 2F42                   MOV.L       R4,@R15
+    00000042 1F51                   MOV.L       R5,@(4,R15)
+    00000044 1F62                   MOV.L       R6,@(8,R15)
+    00000046 1F73                   MOV.L       R7,@(12,R15)
+    00000048 53F7                   MOV.L       @(28,R15),R3
+    0000004A 1F34                   MOV.L       R3,@(16,R15)
+    0000004C 0F24                   MOV.B       R2,@(R0,R15)
+          draw.c    38            dg.WriteKind                    = IMB_WRITEKIND_OVER;
+    0000004E E301                   MOV         #1,R3
+    00000050 E015                   MOV         #21,R0
+    00000052 0F34                   MOV.B       R3,@(R0,R15)
+          draw.c    39    
+          draw.c    40            Bdisp_WriteGraph_VRAM(&dg);
+    00000054 D31E                   MOV.L       L482+12,R3 ; _Bdisp_WriteGraph_VRAM
+    00000056 430B                   JSR         @R3
+    00000058 64F3                   MOV         R15,R4
+          draw.c    41    }
+    0000005A 7F18                   ADD         #24,R15
+    0000005C 4F26                   LDS.L       @R15+,PR
+    0000005E 000B                   RTS
+    00000060 0009                   NOP
+          draw.c    42    
+          draw.c    43    
+          draw.c    44    static char wall[] = {255,255,255,255,255,255,255,255};
+          draw.c    45    static char wall_top[] = {255,221,187,255,255,255,255,255};
+          draw.c    46    
+          draw.c    47    static char spike_up[] = {0,0,0,0,0,0,68,238};
+          draw.c    48    static char spike_down[8], spike_left[8], spike_right[8];
+          draw.c    49    
+          draw.c    50    static char thrower_up[] = {0,0,0,0,0,60,126,126};
+          draw.c    51    static char thrower_down[8], thrower_left[8], thrower_right[8];
+          draw.c    52    static char bullet_left[] = {64,192,64,0,0,0,0,0};
+          draw.c    53    static char bullet_right[] = {128,192,128,0,0,0,0,0};
+          draw.c    54    static char bullet_up[] = {64,224,0,0,0,0,0,0};
+          draw.c    55    static char bullet_down[] = {224,64,0,0,0,0,0,0};
+          draw.c    56    static char stone[] = {224,160,224,0,0,0,0,0};
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          draw.c    57    
+          draw.c    58    static char orton_run1_right[] = {0,126,66,86,66,66,126,40};
+          draw.c    59    static char orton_run2_right[] = {0,126,66,86,66,66,126,34};
+          draw.c    60    static char orton_run3_right[] = {126,66,86,66,66,127,128,0};
+          draw.c    61    static char orton_run4_right[] = {126,66,86,66,66,254,1,0};
+          draw.c    62    static char orton_stop_right[] = {0,126,66,86,66,66,126,66};
+          draw.c    63    static char orton_jump_right[] = {126,66,86,66,66,255,0,0};
+          draw.c    64    static char orton_run1_left[8], orton_run2_left[8], orton_run3_left[8], orton_run4_left[8], orton_stop_lef
+                         +t[8], orton_jump_left[8];
+          draw.c    65    
+          draw.c    66    static char explosion1[] = {0,44,82,74,129,110,48,0};
+          draw.c    67    static char explosion2[] = {6,105,66,136,2,33,132,99};
+          draw.c    68    static char explosion3[] = {8,65,16,132,0,0,17,130};
+          draw.c    69    
+          draw.c    70    static char* bitmap[] = {
+          draw.c    71            0,
+          draw.c    72            wall, wall_top,
+          draw.c    73            spike_left, spike_right, spike_up, spike_down,
+          draw.c    74            thrower_left, thrower_right, thrower_up, thrower_down,
+          draw.c    75            0, orton_run1_left,
+          draw.c    76            wall, wall_top,
+          draw.c    77            orton_run1_left,
+          draw.c    78            bullet_left, bullet_right, bullet_up, bullet_down,
+          draw.c    79            stone,
+          draw.c    80            orton_stop_left,
+          draw.c    81            orton_run1_left, orton_run2_left, orton_run3_left, orton_run4_left,
+          draw.c    82            orton_jump_left,
+          draw.c    83            orton_stop_right,
+          draw.c    84            orton_run1_right, orton_run2_right, orton_run3_right, orton_run4_right,
+          draw.c    85            orton_jump_right,
+          draw.c    86            explosion1, explosion2, explosion3
+          draw.c    87    };
+          draw.c    88    
+          draw.c    89    void draw_init()
+    00000062              _draw_init:                      ; function: draw_init
+                                                           ; frame size=4
+    00000062 4F22                   STS.L       PR,@-R15
+          draw.c    90    {
+          draw.c    91            vertical_symmetry(orton_run1_right, orton_run1_left);
+    00000064 D51B                   MOV.L       L482+16,R5 ; __$orton_run1_left
+    00000066 D41C                   MOV.L       L482+20,R4 ; __$orton_run1_right
+    00000068 B05C                   BSR         __$vertical_symmetry
+    0000006A 0009                   NOP
+          draw.c    92            vertical_symmetry(orton_run2_right, orton_run2_left);
+    0000006C D51B                   MOV.L       L482+24,R5 ; __$orton_run2_left
+    0000006E D41C                   MOV.L       L482+28,R4 ; __$orton_run2_right
+    00000070 B058                   BSR         __$vertical_symmetry
+    00000072 0009                   NOP
+          draw.c    93            vertical_symmetry(orton_run3_right, orton_run3_left);
+    00000074 D51B                   MOV.L       L482+32,R5 ; __$orton_run3_left
+    00000076 D41C                   MOV.L       L482+36,R4 ; __$orton_run3_right
+    00000078 B054                   BSR         __$vertical_symmetry
+    0000007A 0009                   NOP
+          draw.c    94            vertical_symmetry(orton_run4_right, orton_run4_left);
+    0000007C D51B                   MOV.L       L482+40,R5 ; __$orton_run4_left
+    0000007E D41C                   MOV.L       L482+44,R4 ; __$orton_run4_right
+    00000080 B050                   BSR         __$vertical_symmetry
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000082 0009                   NOP
+          draw.c    95            vertical_symmetry(orton_stop_right, orton_stop_left);
+    00000084 D51B                   MOV.L       L482+48,R5 ; __$orton_stop_left
+    00000086 D41C                   MOV.L       L482+52,R4 ; __$orton_stop_right
+    00000088 B04C                   BSR         __$vertical_symmetry
+    0000008A 0009                   NOP
+          draw.c    96            vertical_symmetry(orton_jump_right, orton_jump_left);
+    0000008C D51B                   MOV.L       L482+56,R5 ; __$orton_jump_left
+    0000008E D41C                   MOV.L       L482+60,R4 ; __$orton_jump_right
+    00000090 B048                   BSR         __$vertical_symmetry
+    00000092 0009                   NOP
+          draw.c    97    
+          draw.c    98            rotated_90_degrees(spike_up, spike_right);
+    00000094 D51B                   MOV.L       L482+64,R5 ; __$spike_right
+    00000096 D41C                   MOV.L       L482+68,R4 ; __$spike_up
+    00000098 B074                   BSR         __$rotated_90_degrees
+    0000009A 0009                   NOP
+          draw.c    99            rotated_90_degrees(spike_right, spike_down);
+    0000009C D51B                   MOV.L       L482+72,R5 ; __$spike_down
+    0000009E D419                   MOV.L       L482+64,R4 ; __$spike_right
+    000000A0 B070                   BSR         __$rotated_90_degrees
+    000000A2 0009                   NOP
+          draw.c   100            rotated_90_degrees(spike_down, spike_left);
+    000000A4 D51A                   MOV.L       L482+76,R5 ; __$spike_left
+    000000A6 D419                   MOV.L       L482+72,R4 ; __$spike_down
+    000000A8 B06C                   BSR         __$rotated_90_degrees
+    000000AA 0009                   NOP
+          draw.c   101    
+          draw.c   102            rotated_90_degrees(thrower_up, thrower_right);
+    000000AC D519                   MOV.L       L482+80,R5 ; __$thrower_right
+    000000AE D41A                   MOV.L       L482+84,R4 ; __$thrower_up
+    000000B0 B068                   BSR         __$rotated_90_degrees
+    000000B2 0009                   NOP
+          draw.c   103            rotated_90_degrees(thrower_right, thrower_down);
+    000000B4 D519                   MOV.L       L482+88,R5 ; __$thrower_down
+    000000B6 D417                   MOV.L       L482+80,R4 ; __$thrower_right
+    000000B8 B064                   BSR         __$rotated_90_degrees
+    000000BA 0009                   NOP
+          draw.c   104            rotated_90_degrees(thrower_down, thrower_left);
+    000000BC D518                   MOV.L       L482+92,R5 ; __$thrower_left
+    000000BE D417                   MOV.L       L482+88,R4 ; __$thrower_down
+    000000C0 A060                   BRA         __$rotated_90_degrees
+    000000C2 4F26                   LDS.L       @R15+,PR
+    000000C4              L482:                             
+    000000C4 0400                   .DATA.W     H'0400
+    000000C6 0080                   .DATA.W     H'0080
+    000000C8 <00000000>             .DATA.L     _vbuf
+    000000CC <00000000>             .DATA.L     _memset
+    000000D0 <00000000>             .DATA.L     _Bdisp_WriteGraph_VRAM
+    000000D4 <00000000>             .DATA.L     __$orton_run1_left
+    000000D8 <00000000>             .DATA.L     __$orton_run1_right
+    000000DC <00000000>             .DATA.L     __$orton_run2_left
+    000000E0 <00000000>             .DATA.L     __$orton_run2_right
+    000000E4 <00000000>             .DATA.L     __$orton_run3_left
+    000000E8 <00000000>             .DATA.L     __$orton_run3_right
+    000000EC <00000000>             .DATA.L     __$orton_run4_left
+    000000F0 <00000000>             .DATA.L     __$orton_run4_right
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000F4 <00000000>             .DATA.L     __$orton_stop_left
+    000000F8 <00000000>             .DATA.L     __$orton_stop_right
+    000000FC <00000000>             .DATA.L     __$orton_jump_left
+    00000100 <00000000>             .DATA.L     __$orton_jump_right
+    00000104 <00000000>             .DATA.L     __$spike_right
+    00000108 <00000000>             .DATA.L     __$spike_up
+    0000010C <00000000>             .DATA.L     __$spike_down
+    00000110 <00000000>             .DATA.L     __$spike_left
+    00000114 <00000000>             .DATA.L     __$thrower_right
+    00000118 <00000000>             .DATA.L     __$thrower_up
+    0000011C <00000000>             .DATA.L     __$thrower_down
+    00000120 <00000000>             .DATA.L     __$thrower_left
+          draw.c   105    }
+          draw.c   106    
+          draw.c   107    static void vertical_symmetry(char* source, char* destination)
+    00000124              __$vertical_symmetry:            ; function: vertical_symmetry
+                                                           ; frame size=24
+    00000124 2FE6                   MOV.L       R14,@-R15
+          draw.c   108    {
+          draw.c   109            int i, j;
+          draw.c   110            memset(destination, 0, 8);
+    00000126 E608                   MOV         #8,R6
+    00000128 D365                   MOV.L       L483,R3    ; _memset
+    0000012A 2FC6                   MOV.L       R12,@-R15
+    0000012C 2FB6                   MOV.L       R11,@-R15
+    0000012E 2FA6                   MOV.L       R10,@-R15
+    00000130 4F22                   STS.L       PR,@-R15
+    00000132 6A53                   MOV         R5,R10
+    00000134 7FFC                   ADD         #-4,R15
+    00000136 E500                   MOV         #0,R5
+    00000138 2F42                   MOV.L       R4,@R15
+    0000013A 430B                   JSR         @R3
+    0000013C 64A3                   MOV         R10,R4
+          draw.c   111            for(i=0 ; i<8 ; i++)
+    0000013E EC00                   MOV         #0,R12
+    00000140 EE07                   MOV         #7,R14
+    00000142 E608                   MOV         #8,R6
+    00000144 E501                   MOV         #1,R5
+    00000146 67C3                   MOV         R12,R7
+    00000148              L448:                             
+    00000148 6BF2                   MOV.L       @R15,R11
+    0000014A 6073                   MOV         R7,R0
+          draw.c   112            {
+          draw.c   113                    for(j=0 ; j<8 ; j++)
+    0000014C 64C3                   MOV         R12,R4
+    0000014E 3B7C                   ADD         R7,R11
+    00000150 30AC                   ADD         R10,R0
+    00000152              L449:                             
+          draw.c   114                    {
+          draw.c   115                            if(source[i]&1<<j)
+    00000152 6253                   MOV         R5,R2
+    00000154 63B0                   MOV.B       @R11,R3
+    00000156 424C                   SHAD        R4,R2
+    00000158 2328                   TST         R2,R3
+    0000015A 8906                   BT          L450
+          draw.c   116                                    destination[i] |= 1<<7-j;
+    0000015C 62E3                   MOV         R14,R2
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000015E 3248                   SUB         R4,R2
+    00000160 6353                   MOV         R5,R3
+    00000162 432C                   SHAD        R2,R3
+    00000164 6200                   MOV.B       @R0,R2
+    00000166 223B                   OR          R3,R2
+    00000168 2020                   MOV.B       R2,@R0
+    0000016A              L450:                             
+    0000016A 7401                   ADD         #1,R4
+    0000016C 3463                   CMP/GE      R6,R4
+    0000016E 8BF0                   BF          L449
+    00000170 7701                   ADD         #1,R7
+    00000172 3763                   CMP/GE      R6,R7
+    00000174 8BE8                   BF          L448
+          draw.c   117                    }
+          draw.c   118            }
+          draw.c   119    }
+    00000176 7F04                   ADD         #4,R15
+    00000178 4F26                   LDS.L       @R15+,PR
+    0000017A 6AF6                   MOV.L       @R15+,R10
+    0000017C 6BF6                   MOV.L       @R15+,R11
+    0000017E 6CF6                   MOV.L       @R15+,R12
+    00000180 000B                   RTS
+    00000182 6EF6                   MOV.L       @R15+,R14
+          draw.c   120    
+          draw.c   121    static void rotated_90_degrees(char* source, char* destination)
+    00000184              __$rotated_90_degrees:           ; function: rotated_90_degrees
+                                                           ; frame size=32
+    00000184 2FE6                   MOV.L       R14,@-R15
+          draw.c   122    {
+          draw.c   123            int i, j;
+          draw.c   124            memset(destination, 0, 8);
+    00000186 E608                   MOV         #8,R6
+    00000188 D34D                   MOV.L       L483,R3    ; _memset
+    0000018A 2FD6                   MOV.L       R13,@-R15
+    0000018C 2FC6                   MOV.L       R12,@-R15
+    0000018E 2FA6                   MOV.L       R10,@-R15
+    00000190 2F96                   MOV.L       R9,@-R15
+    00000192 2F86                   MOV.L       R8,@-R15
+    00000194 4F22                   STS.L       PR,@-R15
+    00000196 6853                   MOV         R5,R8
+    00000198 7FFC                   ADD         #-4,R15
+    0000019A E500                   MOV         #0,R5
+    0000019C 2F42                   MOV.L       R4,@R15
+    0000019E 430B                   JSR         @R3
+    000001A0 6483                   MOV         R8,R4
+          draw.c   125            for(i=0 ; i<8 ; i++)
+    000001A2 E907                   MOV         #7,R9
+    000001A4 EA00                   MOV         #0,R10
+    000001A6 E708                   MOV         #8,R7
+    000001A8 E601                   MOV         #1,R6
+    000001AA 6EA3                   MOV         R10,R14
+    000001AC              L451:                             
+    000001AC 6CF2                   MOV.L       @R15,R12
+    000001AE 6063                   MOV         R6,R0
+          draw.c   126            {
+          draw.c   127                    for(j=0 ; j<8 ; j++)
+    000001B0 6DA3                   MOV         R10,R13
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    7
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000001B2 E500                   MOV         #0,R5
+    000001B4 358C                   ADD         R8,R5
+    000001B6 6493                   MOV         R9,R4
+    000001B8 3CEC                   ADD         R14,R12
+    000001BA 40EC                   SHAD        R14,R0
+    000001BC              L452:                             
+          draw.c   128                    {
+          draw.c   129                            if(source[i]&1<<7-j)
+    000001BC 63C0                   MOV.B       @R12,R3
+    000001BE 6263                   MOV         R6,R2
+    000001C0 424C                   SHAD        R4,R2
+    000001C2 2328                   TST         R2,R3
+    000001C4 8D03                   BT/S        L453
+    000001C6 7D01                   ADD         #1,R13
+          draw.c   130                                    destination[j] |= 1<<i;
+    000001C8 6250                   MOV.B       @R5,R2
+    000001CA 220B                   OR          R0,R2
+    000001CC 2520                   MOV.B       R2,@R5
+    000001CE              L453:                             
+    000001CE 7501                   ADD         #1,R5
+    000001D0 3D73                   CMP/GE      R7,R13
+    000001D2 8FF3                   BF/S        L452
+    000001D4 74FF                   ADD         #-1,R4
+    000001D6 7E01                   ADD         #1,R14
+    000001D8 3E73                   CMP/GE      R7,R14
+    000001DA 8BE7                   BF          L451
+          draw.c   131                    }
+          draw.c   132            }
+          draw.c   133    }
+    000001DC 7F04                   ADD         #4,R15
+    000001DE 4F26                   LDS.L       @R15+,PR
+    000001E0 68F6                   MOV.L       @R15+,R8
+    000001E2 69F6                   MOV.L       @R15+,R9
+    000001E4 6AF6                   MOV.L       @R15+,R10
+    000001E6 6CF6                   MOV.L       @R15+,R12
+    000001E8 6DF6                   MOV.L       @R15+,R13
+    000001EA 000B                   RTS
+    000001EC 6EF6                   MOV.L       @R15+,R14
+          draw.c   134    
+          draw.c   135    
+          draw.c   136    void draw_bmp(Bmp bmp, int x, int y)
+    000001EE              _draw_bmp:                       ; function: draw_bmp
+                                                           ; frame size=4
+    000001EE 2F46                   MOV.L       R4,@-R15
+          draw.c   137    {
+          draw.c   138            draw_bmp_8_or_cl(bitmap[bmp], x, y);
+    000001F0 D034                   MOV.L       L483+4,R0  ; __$bitmap
+    000001F2 4408                   SHLL2       R4
+    000001F4 044E                   MOV.L       @(R0,R4),R4
+    000001F6 7F04                   ADD         #4,R15
+          draw.c   139    }
+          draw.c   140    
+          draw.c   141    void draw_bmp_8_or_cl(unsigned char *bmp, int x, int y)
+    000001F8              _draw_bmp_8_or_cl:               ; function: draw_bmp_8_or_cl
+                                                           ; frame size=28
+    000001F8 2FE6                   MOV.L       R14,@-R15
+          draw.c   142    {
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    8
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          draw.c   143            unsigned short line;
+          draw.c   144            char i, shift, begin=0, end=8, bool1=1, bool2=1, *screen, *p=(char*)&line;
+    000001FA E700                   MOV         #0,R7
+    000001FC 2FD6                   MOV.L       R13,@-R15
+          draw.c   145            if(!bmp || x<-7 || x>127 || y<-7 || y>63) return;
+    000001FE 2448                   TST         R4,R4
+    00000200 2FC6                   MOV.L       R12,@-R15
+    00000202 6C73                   MOV         R7,R12
+    00000204 2FB6                   MOV.L       R11,@-R15
+    00000206 EB01                   MOV         #1,R11
+    00000208 2FA6                   MOV.L       R10,@-R15
+    0000020A 6EB3                   MOV         R11,R14
+    0000020C 2F96                   MOV.L       R9,@-R15
+    0000020E 7FFC                   ADD         #-4,R15
+    00000210 E908                   MOV         #8,R9
+    00000212 8D4D                   BT/S        L456
+    00000214 6DF3                   MOV         R15,R13
+    00000216 E2F9                   MOV         #-7,R2
+    00000218 3523                   CMP/GE      R2,R5
+    0000021A 8B49                   BF          L456
+    0000021C E17F                   MOV         #127,R1
+    0000021E 3517                   CMP/GT      R1,R5
+    00000220 8946                   BT          L456
+    00000222 3623                   CMP/GE      R2,R6
+    00000224 8B44                   BF          L456
+    00000226 E33F                   MOV         #63,R3
+    00000228 3637                   CMP/GT      R3,R6
+    0000022A 8941                   BT          L456
+          draw.c   146            if(y < 0) begin = -y;
+    0000022C 4611                   CMP/PZ      R6
+    0000022E 8D01                   BT/S        L457
+          draw.c   147            if(y > 56) end = 64-y;
+    00000230 E238                   MOV         #56,R2
+    00000232 6C6B                   NEG         R6,R12
+    00000234              L457:                             
+    00000234 3627                   CMP/GT      R2,R6
+    00000236 8F02                   BF/S        L458
+          draw.c   148            shift = 8-(x&7);
+    00000238 E207                   MOV         #7,R2
+    0000023A E940                   MOV         #64,R9
+    0000023C 3968                   SUB         R6,R9
+    0000023E              L458:                             
+    0000023E 2259                   AND         R5,R2
+    00000240 EA08                   MOV         #8,R10
+          draw.c   149            if(x < 0) bool1 = 0;
+    00000242 4511                   CMP/PZ      R5
+    00000244 8D01                   BT/S        L459
+    00000246 3A28                   SUB         R2,R10
+    00000248 6B73                   MOV         R7,R11
+    0000024A              L459:                             
+          draw.c   150            if(x>120 || shift==8) bool2 = 0;
+    0000024A E278                   MOV         #120,R2
+    0000024C 3527                   CMP/GT      R2,R5
+    0000024E 8902                   BT          L461
+    00000250 60AE                   EXTS.B      R10,R0
+    00000252 8808                   CMP/EQ      #8,R0
+    00000254 8B00                   BF          L460
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    9
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000256              L461:                             
+    00000256 6E73                   MOV         R7,R14
+    00000258              L460:                             
+          draw.c   151            screen = vbuf+(y+begin<<4)+(x>>3);
+    00000258 D21B                   MOV.L       L483+8,R2  ; _vbuf
+    0000025A 67CE                   EXTS.B      R12,R7
+    0000025C 376C                   ADD         R6,R7
+    0000025E 4708                   SHLL2       R7
+    00000260 4708                   SHLL2       R7
+    00000262 4521                   SHAR        R5
+    00000264 4521                   SHAR        R5
+    00000266 4521                   SHAR        R5
+    00000268 375C                   ADD         R5,R7
+    0000026A 372C                   ADD         R2,R7
+          draw.c   152            for(i=begin ; i<end ; i++)
+    0000026C 65C3                   MOV         R12,R5
+    0000026E 635E                   EXTS.B      R5,R3
+    00000270 343C                   ADD         R3,R4
+    00000272 6CD3                   MOV         R13,R12
+    00000274 669E                   EXTS.B      R9,R6
+    00000276 615E                   EXTS.B      R5,R1
+    00000278 3163                   CMP/GE      R6,R1
+    0000027A 8D19                   BT/S        L456
+    0000027C 7C01                   ADD         #1,R12
+    0000027E              L463:                             
+          draw.c   153            {
+          draw.c   154                    line = bmp[i]<<shift;
+    0000027E 63AE                   EXTS.B      R10,R3
+    00000280 6240                   MOV.B       @R4,R2
+    00000282 622C                   EXTU.B      R2,R2
+    00000284 423D                   SHLD        R3,R2
+          draw.c   155                    if(bool1) screen[0] |= *p;
+    00000286 63BE                   EXTS.B      R11,R3
+    00000288 2338                   TST         R3,R3
+    0000028A 8D04                   BT/S        L464
+    0000028C 2F21                   MOV.W       R2,@R15
+    0000028E 63D0                   MOV.B       @R13,R3
+    00000290 6170                   MOV.B       @R7,R1
+    00000292 213B                   OR          R3,R1
+    00000294 2710                   MOV.B       R1,@R7
+    00000296              L464:                             
+          draw.c   156                    if(bool2) screen[1] |= *(p+1);
+    00000296 62EE                   EXTS.B      R14,R2
+    00000298 2228                   TST         R2,R2
+    0000029A 8903                   BT          L465
+    0000029C 63C0                   MOV.B       @R12,R3
+    0000029E 8471                   MOV.B       @(1,R7),R0
+    000002A0 203B                   OR          R3,R0
+    000002A2 8071                   MOV.B       R0,@(1,R7)
+    000002A4              L465:                             
+          draw.c   157                    screen += 16;
+    000002A4 7710                   ADD         #16,R7
+    000002A6 7501                   ADD         #1,R5
+    000002A8 635E                   EXTS.B      R5,R3
+    000002AA 3363                   CMP/GE      R6,R3
+    000002AC 8FE7                   BF/S        L463
+    000002AE 7401                   ADD         #1,R4
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE   10
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000002B0              L456:                             
+          draw.c   158            }
+          draw.c   159    }
+    000002B0 7F04                   ADD         #4,R15
+    000002B2 69F6                   MOV.L       @R15+,R9
+    000002B4 6AF6                   MOV.L       @R15+,R10
+    000002B6 6BF6                   MOV.L       @R15+,R11
+    000002B8 6CF6                   MOV.L       @R15+,R12
+    000002BA 6DF6                   MOV.L       @R15+,R13
+    000002BC 000B                   RTS
+    000002BE 6EF6                   MOV.L       @R15+,R14
+    000002C0              L483:                             
+    000002C0 <00000000>             .DATA.L     _memset
+    000002C4 <00000000>             .DATA.L     __$bitmap
+    000002C8 <00000000>             .DATA.L     _vbuf
+          draw.c   160    
+          draw.c   161    void draw_horizontal_line(int y, int x1, int x2)
+    000002CC              _draw_horizontal_line:           ; function: draw_horizontal_line
+                                                           ; frame size=20
+    000002CC 2FE6                   MOV.L       R14,@-R15
+          draw.c   162    {
+          draw.c   163        int i;
+          draw.c   164        char* vram = vbuf;
+          draw.c   165        if(y<0 || y>63 || (x1<0 && x2<0) || (x1>127 && x2>127)) return;
+    000002CE 4411                   CMP/PZ      R4
+    000002D0 2FD6                   MOV.L       R13,@-R15
+    000002D2 2FC6                   MOV.L       R12,@-R15
+    000002D4 2FB6                   MOV.L       R11,@-R15
+    000002D6 2F96                   MOV.L       R9,@-R15
+    000002D8 DD41                   MOV.L       L484+2,R13 ; _vbuf
+    000002DA 8B64                   BF          L469
+    000002DC E23F                   MOV         #63,R2
+    000002DE 3427                   CMP/GT      R2,R4
+    000002E0 8961                   BT          L469
+    000002E2 4511                   CMP/PZ      R5
+    000002E4 8901                   BT          L468
+    000002E6 4611                   CMP/PZ      R6
+    000002E8 8B5D                   BF          L469
+    000002EA              L468:                             
+    000002EA E27F                   MOV         #127,R2
+    000002EC 3527                   CMP/GT      R2,R5
+    000002EE 8B01                   BF          L466
+    000002F0 3627                   CMP/GT      R2,R6
+    000002F2 8958                   BT          L469
+    000002F4              L466:                             
+          draw.c   166        if(x1 < 0) x1 = 0;
+    000002F4 4511                   CMP/PZ      R5
+    000002F6 8D01                   BT/S        L470
+          draw.c   167        if(x2 > 127) x2 = 127;
+    000002F8 E77F                   MOV         #127,R7
+    000002FA E500                   MOV         #0,R5
+    000002FC              L470:                             
+    000002FC 3677                   CMP/GT      R7,R6
+    000002FE 8B00                   BF          L471
+    00000300 6673                   MOV         R7,R6
+    00000302              L471:                             
+    00000302 E107                   MOV         #7,R1
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE   11
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000304 996B                   MOV.W       L484,R9    ; H'00FF
+    00000306 6753                   MOV         R5,R7
+    00000308 4721                   SHAR        R7
+    0000030A 4721                   SHAR        R7
+    0000030C 4721                   SHAR        R7
+    0000030E 6E63                   MOV         R6,R14
+    00000310 4E21                   SHAR        R14
+    00000312 4E21                   SHAR        R14
+    00000314 4E21                   SHAR        R14
+    00000316 6C43                   MOV         R4,R12
+    00000318 4C08                   SHLL2       R12
+    0000031A 4C08                   SHLL2       R12
+    0000031C 6263                   MOV         R6,R2
+    0000031E 2219                   AND         R1,R2
+    00000320 6B13                   MOV         R1,R11
+    00000322 37E0                   CMP/EQ      R14,R7
+    00000324 8D1E                   BT/S        L472
+    00000326 3B28                   SUB         R2,R11
+          draw.c   168            if(x1>>3 != x2>>3)
+          draw.c   169            {
+          draw.c   170                    vram[(y<<4)+(x1>>3)] |= 255 >> (x1&7);
+    00000328 60C3                   MOV         R12,R0
+    0000032A 307C                   ADD         R7,R0
+    0000032C 02DC                   MOV.B       @(R0,R13),R2
+          draw.c   171                    vram[(y<<4)+(x2>>3)] |= 255 << 7-(x2&7);
+          draw.c   172                    for(i=(x1>>3)+1 ; i<x2>>3 ; i++)
+    0000032E 6473                   MOV         R7,R4
+    00000330 2519                   AND         R1,R5
+    00000332 655B                   NEG         R5,R5
+    00000334 6393                   MOV         R9,R3
+    00000336 435C                   SHAD        R5,R3
+    00000338 223B                   OR          R3,R2
+    0000033A 49BC                   SHAD        R11,R9
+    0000033C 0D24                   MOV.B       R2,@(R0,R13)
+    0000033E 7401                   ADD         #1,R4
+    00000340 60E3                   MOV         R14,R0
+    00000342 30CC                   ADD         R12,R0
+    00000344 03DC                   MOV.B       @(R0,R13),R3
+    00000346 65C3                   MOV         R12,R5
+    00000348 239B                   OR          R9,R3
+    0000034A 354C                   ADD         R4,R5
+    0000034C 0D34                   MOV.B       R3,@(R0,R13)
+    0000034E 34E3                   CMP/GE      R14,R4
+    00000350 35DC                   ADD         R13,R5
+    00000352 8D28                   BT/S        L469
+    00000354 E6FF                   MOV         #-1,R6
+    00000356              L474:                             
+    00000356 7401                   ADD         #1,R4
+          draw.c   173                            vram[(y<<4) + i] = 255;
+    00000358 2560                   MOV.B       R6,@R5
+    0000035A 34E3                   CMP/GE      R14,R4
+    0000035C 8FFB                   BF/S        L474
+    0000035E 7501                   ADD         #1,R5
+    00000360 A021                   BRA         L469
+    00000362 0009                   NOP
+    00000364              L472:                             
+          draw.c   174            }
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE   12
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          draw.c   175            else vram[(y<<4)+(x1>>3)] |= (255>>(x1%8 + 7-x2%8))<<(7-(x2&7));
+    00000364 60C3                   MOV         R12,R0
+    00000366 307C                   ADD         R7,R0
+    00000368 6103                   MOV         R0,R1
+    0000036A 6053                   MOV         R5,R0
+    0000036C 4011                   CMP/PZ      R0
+    0000036E 8F02                   BF/S        L476
+    00000370 31DC                   ADD         R13,R1
+    00000372 A005                   BRA         L477
+    00000374 C907                   AND         #7,R0
+    00000376              L476:                             
+    00000376 6007                   NOT         R0,R0
+    00000378 7001                   ADD         #1,R0
+    0000037A C907                   AND         #7,R0
+    0000037C 6007                   NOT         R0,R0
+    0000037E 7001                   ADD         #1,R0
+    00000380              L477:                             
+    00000380 6303                   MOV         R0,R3
+    00000382 6063                   MOV         R6,R0
+    00000384 4011                   CMP/PZ      R0
+    00000386 8B01                   BF          L478
+    00000388 A005                   BRA         L479
+    0000038A C907                   AND         #7,R0
+    0000038C              L478:                             
+    0000038C 6007                   NOT         R0,R0
+    0000038E 7001                   ADD         #1,R0
+    00000390 C907                   AND         #7,R0
+    00000392 6007                   NOT         R0,R0
+    00000394 7001                   ADD         #1,R0
+    00000396              L479:                             
+    00000396 3308                   SUB         R0,R3
+    00000398 7307                   ADD         #7,R3
+    0000039A 633B                   NEG         R3,R3
+    0000039C 493C                   SHAD        R3,R9
+    0000039E 49BC                   SHAD        R11,R9
+    000003A0 6310                   MOV.B       @R1,R3
+    000003A2 239B                   OR          R9,R3
+    000003A4 2130                   MOV.B       R3,@R1
+          draw.c   176    }
+    000003A6              L469:                             
+    000003A6 69F6                   MOV.L       @R15+,R9
+    000003A8 6BF6                   MOV.L       @R15+,R11
+    000003AA 6CF6                   MOV.L       @R15+,R12
+    000003AC 6DF6                   MOV.L       @R15+,R13
+    000003AE 000B                   RTS
+    000003B0 6EF6                   MOV.L       @R15+,R14
+          draw.c   177    
+          draw.c   178    void draw_rectangle(int x1, int y1, int x2, int y2)
+    000003B2              _draw_rectangle:                 ; function: draw_rectangle
+                                                           ; frame size=20
+    000003B2 2FE6                   MOV.L       R14,@-R15
+    000003B4 2FD6                   MOV.L       R13,@-R15
+          draw.c   179    {
+          draw.c   180            int i;
+          draw.c   181            for(i=y1 ; i<=y2 ; i++)
+    000003B6 6E53                   MOV         R5,R14
+    000003B8 4F22                   STS.L       PR,@-R15
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE   13
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000003BA 6D73                   MOV         R7,R13
+    000003BC 7FF8                   ADD         #-8,R15
+    000003BE 3ED7                   CMP/GT      R13,R14
+    000003C0 2F42                   MOV.L       R4,@R15
+    000003C2 8D07                   BT/S        L480
+    000003C4 1F61                   MOV.L       R6,@(4,R15)
+    000003C6              L481:                             
+          draw.c   182                    draw_horizontal_line(i, x1, x2);
+    000003C6 56F1                   MOV.L       @(4,R15),R6
+    000003C8 65F2                   MOV.L       @R15,R5
+    000003CA BF7F                   BSR         _draw_horizontal_line
+    000003CC 64E3                   MOV         R14,R4
+    000003CE 7E01                   ADD         #1,R14
+    000003D0 3ED7                   CMP/GT      R13,R14
+    000003D2 8BF8                   BF          L481
+    000003D4              L480:                             
+          draw.c   183    }
+    000003D4 7F08                   ADD         #8,R15
+    000003D6 4F26                   LDS.L       @R15+,PR
+    000003D8 6DF6                   MOV.L       @R15+,R13
+    000003DA 000B                   RTS
+    000003DC 6EF6                   MOV.L       @R15+,R14
+    000003DE              L484:                             
+    000003DE 00FF                   .DATA.W     H'00FF
+    000003E0 <00000000>             .DATA.L     _vbuf
+D   00000000              __$wall:                         ; static: wall
+    00000000 FFFFFFFFFF             .DATA.B     H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF
+             FFFFFF       
+    00000008              __$wall_top:                     ; static: wall_top
+    00000008 FFDDBBFFFF             .DATA.B     H'FF,H'DD,H'BB,H'FF,H'FF,H'FF,H'FF,H'FF
+             FFFFFF       
+    00000010              __$spike_up:                     ; static: spike_up
+    00000010 0000000000             .DATA.B     H'00,H'00,H'00,H'00,H'00,H'00,H'44,H'EE
+             0044EE       
+    00000018              __$thrower_up:                   ; static: thrower_up
+    00000018 0000000000             .DATA.B     H'00,H'00,H'00,H'00,H'00,H'3C,H'7E,H'7E
+             3C7E7E       
+    00000020              __$bullet_left:                  ; static: bullet_left
+    00000020 40C0400000             .DATA.B     H'40,H'C0,H'40,H'00,H'00,H'00,H'00,H'00
+             000000       
+    00000028              __$bullet_right:                 ; static: bullet_right
+    00000028 80C0800000             .DATA.B     H'80,H'C0,H'80,H'00,H'00,H'00,H'00,H'00
+             000000       
+    00000030              __$bullet_up:                    ; static: bullet_up
+    00000030 40E0000000             .DATA.B     H'40,H'E0,H'00,H'00,H'00,H'00,H'00,H'00
+             000000       
+    00000038              __$bullet_down:                  ; static: bullet_down
+    00000038 E040000000             .DATA.B     H'E0,H'40,H'00,H'00,H'00,H'00,H'00,H'00
+             000000       
+    00000040              __$stone:                        ; static: stone
+    00000040 E0A0E00000             .DATA.B     H'E0,H'A0,H'E0,H'00,H'00,H'00,H'00,H'00
+             000000       
+    00000048              __$orton_run1_right:             ; static: orton_run1_right
+    00000048 007E425642             .DATA.B     H'00,H'7E,H'42,H'56,H'42,H'42,H'7E,H'28
+             427E28       
+    00000050              __$orton_run2_right:             ; static: orton_run2_right
+    00000050 007E425642             .DATA.B     H'00,H'7E,H'42,H'56,H'42,H'42,H'7E,H'22
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE   14
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+             427E22       
+    00000058              __$orton_run3_right:             ; static: orton_run3_right
+    00000058 7E42564242             .DATA.B     H'7E,H'42,H'56,H'42,H'42,H'7F,H'80,H'00
+             7F8000       
+    00000060              __$orton_run4_right:             ; static: orton_run4_right
+    00000060 7E42564242             .DATA.B     H'7E,H'42,H'56,H'42,H'42,H'FE,H'01,H'00
+             FE0100       
+    00000068              __$orton_stop_right:             ; static: orton_stop_right
+    00000068 007E425642             .DATA.B     H'00,H'7E,H'42,H'56,H'42,H'42,H'7E,H'42
+             427E42       
+    00000070              __$orton_jump_right:             ; static: orton_jump_right
+    00000070 7E42564242             .DATA.B     H'7E,H'42,H'56,H'42,H'42,H'FF,H'00,H'00
+             FF0000       
+    00000078              __$explosion1:                   ; static: explosion1
+    00000078 002C524A81             .DATA.B     H'00,H'2C,H'52,H'4A,H'81,H'6E,H'30,H'00
+             6E3000       
+    00000080              __$explosion2:                   ; static: explosion2
+    00000080 0669428802             .DATA.B     H'06,H'69,H'42,H'88,H'02,H'21,H'84,H'63
+             218463       
+    00000088              __$explosion3:                   ; static: explosion3
+    00000088 0841108400             .DATA.B     H'08,H'41,H'10,H'84,H'00,H'00,H'11,H'82
+             001182       
+    00000090              __$bitmap:                       ; static: bitmap
+    00000090 00000000               .DATA.L     H'00000000
+    00000094 <00000000>             .DATA.L     __$wall,__$wall_top,__$spike_left,__$spike_right,__$spike_up,__$spike_down,
+             <00000000> +                       __$thrower_left,__$thrower_right,__$thrower_up,__$thrower_down
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+    000000BC 00000000               .DATA.L     H'00000000
+    000000C0 <00000000>             .DATA.L     __$orton_run1_left,__$wall,__$wall_top,__$orton_run1_left,__$bullet_left,
+             <00000000> +                       __$bullet_right,__$bullet_up,__$bullet_down,__$stone,__$orton_stop_left,
+             <00000000> +                       __$orton_run1_left,__$orton_run2_left,__$orton_run3_left,__$orton_run4_left,
+             <00000000> +                       __$orton_jump_left,__$orton_stop_right,__$orton_run1_right,__$orton_run2_right,
+             <00000000> +                       __$orton_run3_right,__$orton_run4_right,__$orton_jump_right,__$explosion1,
+             <00000000> +                       __$explosion2,__$explosion3
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+             <00000000>   
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE   15
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+             <00000000>   
+             <00000000>   
+B   00000000              _vbuf:                           ; static: vbuf
+    00000000 00000400               .RES.B      1024
+    00000400              __$spike_down:                   ; static: spike_down
+    00000400 00000008               .RES.B      8
+    00000408              __$spike_left:                   ; static: spike_left
+    00000408 00000008               .RES.B      8
+    00000410              __$spike_right:                  ; static: spike_right
+    00000410 00000008               .RES.B      8
+    00000418              __$thrower_down:                 ; static: thrower_down
+    00000418 00000008               .RES.B      8
+    00000420              __$thrower_left:                 ; static: thrower_left
+    00000420 00000008               .RES.B      8
+    00000428              __$thrower_right:                ; static: thrower_right
+    00000428 00000008               .RES.B      8
+    00000430              __$orton_run1_left:              ; static: orton_run1_left
+    00000430 00000008               .RES.B      8
+    00000438              __$orton_run2_left:              ; static: orton_run2_left
+    00000438 00000008               .RES.B      8
+    00000440              __$orton_run3_left:              ; static: orton_run3_left
+    00000440 00000008               .RES.B      8
+    00000448              __$orton_run4_left:              ; static: orton_run4_left
+    00000448 00000008               .RES.B      8
+    00000450              __$orton_stop_left:              ; static: orton_stop_left
+    00000450 00000008               .RES.B      8
+    00000458              __$orton_jump_left:              ; static: orton_jump_left
+    00000458 00000008               .RES.B      8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:30  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:         3
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:      183
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               000003E4 Byte(s)
+CONSTANT SECTION (C):                               00000000 Byte(s)
+DATA     SECTION (D):                               00000120 Byte(s)
+BSS      SECTION (B):                               00000460 Byte(s)
+
+ TOTAL PROGRAM SIZE: 00000964 Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:            2
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:           9
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            42
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\ADMINI~1\AppData\Local\Temp\hmk8813.tmp 
+

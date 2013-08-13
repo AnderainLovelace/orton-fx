@@ -1,0 +1,712 @@
+Hitachi Optimizing Linkage Editor (Ver. 7.1.03.000)14-Jun-2013 09:16:25
+
+*** Options ***
+
+-subcommand=C:\Users\ADMINI~1\AppData\Local\Temp\hmk5EA3.tmp
+noprelink
+sdebug
+rom D=R
+nomessage
+list "E:\Anderain\fx-9860\Orton\Debug\FXADDINror.map"
+show symbol
+nooptimize
+start P_TOP,P,C,D,C$VTBL,C$INIT/0300200,B_BR_Size,B,R/08100000
+fsymbol P
+nologo
+input "E:\Anderain\fx-9860\Orton\Debug\draw.obj" "E:\Anderain\fx-9860\Orton\Debug\game.obj" "E:\Anderain\fx-9860\Orton\Debug\level.obj" "E:\Anderain\fx-9860\Orton\Debug\main.obj" "E:\Anderain\fx-9860\Orton\Debug\time.obj"
+input "C:\Program Files\CASIO\fx-9860G SDK\OS\FX\lib\setup.obj"
+library "C:\Program Files\CASIO\fx-9860G SDK\OS\FX\lib\fx9860G_library.lib"
+output "E:\Anderain\fx-9860\Orton\Debug\FXADDINror.abs"
+-nomessage=1100
+end
+
+*** Error information ***
+
+*** Mapping List ***
+
+SECTION                            START      END         SIZE   ALIGN
+
+P_TOP
+                                  00300200  0030020b         c   4
+P
+                                  0030020c  00305ff7      5dec   4
+C
+                                  00305ff8  00309047      3050   4
+D
+                                  00309048  00309177       130   4
+B_BR_Size
+                                  08100000  08100003         4   4
+B
+                                  08100004  081004c3       4c0   4
+R
+                                  081004c4  081005f3       130   4
+
+*** Symbol List ***
+
+SECTION=
+FILE=                               START        END    SIZE
+  SYMBOL                            ADDR        SIZE    INFO      COUNTS  OPT
+
+SECTION=P_TOP
+FILE=E:\Anderain\fx-9860\Orton\Debug\main.obj
+                                  00300200  0030020b         c
+  _InitializeSystem
+                                  00300200         c   func ,g         * 
+
+SECTION=P
+FILE=E:\Anderain\fx-9860\Orton\Debug\draw.obj
+                                  0030020c  003005ef       3e4
+  _allclr_vbuf
+                                  0030020c         a   func ,g         * 
+  _putdispvram_vbuf
+                                  00300216        2e   func ,g         * 
+  _write_graph
+                                  00300244        2a   func ,g         * 
+  _draw_init
+                                  0030026e        c2   func ,g         * 
+  _vertical_symmetry
+                                  00300330        60   func ,l         * 
+  _rotated_90_degrees
+                                  00300390        6a   func ,l         * 
+  _draw_bmp
+                                  003003fa         a   func ,g         * 
+  _draw_bmp_8_or_cl
+                                  00300404        d4   func ,g         * 
+  _draw_horizontal_line
+                                  003004d8        e6   func ,g         * 
+  _draw_rectangle
+                                  003005be        32   func ,g         * 
+FILE=E:\Anderain\fx-9860\Orton\Debug\game.obj
+                                  003005f0  003037bb      31cc
+  _OSVersionAsInt
+                                  003005f0        3e   func ,g         * 
+  _delay
+                                  0030062e        10   func ,g         * 
+  _CheckKeyRow
+                                  0030063e        ee   func ,g         * 
+  _KeyDown
+                                  0030072c        90   func ,g         * 
+  _GetKeyMod
+                                  003007bc        3c   func ,g         * 
+  _game
+                                  003007f8      2b66   func ,g         * 
+  _dialog
+                                  0030335e       1be   func ,g         * 
+  _draw_message
+                                  0030351c       27a   func ,l         * 
+  _pause
+                                  00303796        26   func ,g         * 
+FILE=E:\Anderain\fx-9860\Orton\Debug\level.obj
+                                  003037bc  00304ef3      1738
+  _load_level
+                                  003037bc      1488   func ,g         * 
+  _free_level
+                                  00304c44        94   func ,g         * 
+  _load_message
+                                  00304cd8        7e   func ,l         * 
+  _load_thrower
+                                  00304d56       19e   func ,l         * 
+FILE=E:\Anderain\fx-9860\Orton\Debug\main.obj
+                                  00304ef4  003050ef       1fc
+  _title
+                                  00304ef4        4c   func ,g         * 
+  _end
+                                  00304f40        aa   func ,g         * 
+  _AddIn_main
+                                  00304fea       106   func ,g         * 
+FILE=E:\Anderain\fx-9860\Orton\Debug\time.obj
+                                  003050f0  003051db        ec
+  _RTCReadHour
+                                  003050f0        3c   func ,g         * 
+  _RTCReadMinute
+                                  0030512c        3c   func ,g         * 
+  _RTCReadSecond
+                                  00305168        3c   func ,g         * 
+  _time
+                                  003051a4        38   func ,g         * 
+FILE=C:\Program Files\CASIO\fx-9860G SDK\OS\FX\lib\setup.obj
+                                  003051dc  003052f7       11c
+  ___LINK_PROTECT
+                                  003051dc         4   func ,g         * 
+  _SetQuitHandler
+                                  003051e0         6   func ,g         * 
+  _OnAppCloseDefault
+                                  003051e6        54   func ,g         * 
+  __INITSCT_ADDIN
+                                  0030523a        48   func ,g         * 
+  _INIT_ADDIN_APPLICATION
+                                  00305282        76   func ,g         * 
+FILE=longjmp
+                                  003052f8  00305343        4c
+  _longjmp
+                                  003052f8         0   none ,g         * 
+  TERM
+                                  0030533a         0   none ,l         * 
+  A_work
+                                  00305340         0   none ,l         * 
+FILE=setjmp
+                                  00305344  0030537d        3a
+  _setjmp
+                                  00305344         0   none ,g         * 
+FILE=__bfxbu
+                                  00305380  00305399        1a
+  __bfxbu
+                                  00305380         0   none ,g         * 
+FILE=__divls
+                                  0030539c  0030544f        b4
+  __divls
+                                  0030539c         0   none ,g         * 
+  divls_zero
+                                  0030543a         0   none ,l         * 
+  A_errno
+                                  00305448         0   none ,l         * 
+  n_zerono
+                                  0030544c         0   none ,l         * 
+FILE=__modls
+                                  00305450  00305517        c8
+  __modls
+                                  00305450         0   none ,g         * 
+  modls_L
+                                  003054f6         0   none ,l         * 
+  modls_zero
+                                  00305502         0   none ,l         * 
+  A_errno
+                                  00305510         0   none ,l         * 
+  n_zerono
+                                  00305514         0   none ,l         * 
+FILE=__q_mvn
+                                  00305518  003055d7        c0
+  __quick_mvn
+                                  00305518         0   none ,g         * 
+  FMVN_FAST
+                                  00305520         0   none ,l         * 
+  A_FMVN_TBL
+                                  00305528         0   none ,l         * 
+  FMVN_64
+                                  0030552e         0   none ,l         * 
+  FMVN_60
+                                  00305532         0   none ,l         * 
+  FMVN_56
+                                  00305536         0   none ,l         * 
+  FMVN_52
+                                  0030553a         0   none ,l         * 
+  FMVN_48
+                                  0030553e         0   none ,l         * 
+  FMVN_44
+                                  00305542         0   none ,l         * 
+  FMVN_40
+                                  00305546         0   none ,l         * 
+  FMVN_36
+                                  0030554a         0   none ,l         * 
+  FMVN_32
+                                  0030554e         0   none ,l         * 
+  FMVN_28
+                                  00305552         0   none ,l         * 
+  FMVN_24
+                                  00305556         0   none ,l         * 
+  FMVN_20
+                                  0030555a         0   none ,l         * 
+  FMVN_16
+                                  0030555e         0   none ,l         * 
+  FMVN_12
+                                  00305562         0   none ,l         * 
+  FMVN_8
+                                  00305566         0   none ,l         * 
+  FMVN_4
+                                  0030556a         0   none ,l         * 
+  FMVN_0
+                                  0030556e         0   none ,l         * 
+  FMVN_TBL
+                                  00305574         0   none ,l         * 
+  FMVN_slow
+                                  003055b8         0   none ,l         * 
+  FMVN_L
+                                  003055be         0   none ,l         * 
+  FMVN_END
+                                  003055d2         0   none ,l         * 
+FILE=__q_fmvn
+                                  003055d8  0030567b        a4
+  __quick_evn_mvn
+                                  003055d8         0   none ,g         * 
+  __quick_odd_mvn
+                                  003055e4         0   none ,g         * 
+  A_FMVN_TBL
+                                  003055f0         0   none ,l         * 
+  FMVN_64
+                                  003055f6         0   none ,l         * 
+  FMVN_60
+                                  003055fa         0   none ,l         * 
+  FMVN_56
+                                  003055fe         0   none ,l         * 
+  FMVN_52
+                                  00305602         0   none ,l         * 
+  FMVN_48
+                                  00305606         0   none ,l         * 
+  FMVN_44
+                                  0030560a         0   none ,l         * 
+  FMVN_40
+                                  0030560e         0   none ,l         * 
+  FMVN_36
+                                  00305612         0   none ,l         * 
+  FMVN_32
+                                  00305616         0   none ,l         * 
+  FMVN_28
+                                  0030561a         0   none ,l         * 
+  FMVN_24
+                                  0030561e         0   none ,l         * 
+  FMVN_20
+                                  00305622         0   none ,l         * 
+  FMVN_16
+                                  00305626         0   none ,l         * 
+  FMVN_12
+                                  0030562a         0   none ,l         * 
+  FMVN_8
+                                  0030562e         0   none ,l         * 
+  FMVN_4
+                                  00305632         0   none ,l         * 
+  FMVN_0
+                                  00305634         0   none ,l         * 
+  FMVN_TBL
+                                  00305638         0   none ,l         * 
+FILE=__s_mvn
+                                  0030567c  003056b3        38
+  __slow_mvn
+                                  0030567c         0   none ,g         * 
+  SMVN_B
+                                  0030568a         0   none ,l         * 
+  SMVN_END
+                                  003056ac         0   none ,l         * 
+FILE=__s_scpy
+                                  003056b4  00305703        50
+  __slow_strcpy
+                                  003056b4         0   none ,g         * 
+  SCPY_B
+                                  003056cc         0   none ,l         * 
+  SCPY_END
+                                  003056f0         0   none ,l         * 
+  _quick_strcpy2
+                                  003056f8         0   none ,l         * 
+  A_qcpy
+                                  00305700         0   none ,l         * 
+FILE=abs
+                                  00305704  00305711         e
+  _abs
+                                  00305704         e   func ,g         * 
+FILE=memcpy
+                                  00305714  003057d1        be
+  _memcpy
+                                  00305714        be   func ,g         * 
+FILE=memset
+                                  003057d4  003057eb        18
+  _memset
+                                  003057d4        18   func ,g         * 
+FILE=rand
+                                  003057ec  00305817        2c
+  _rand
+                                  003057ec        2c   func ,g         * 
+FILE=srand
+                                  00305818  00305823         c
+  _srand
+                                  00305818         c   func ,g         * 
+FILE=strlen
+                                  00305824  00305833        10
+  _strlen
+                                  00305824        10   func ,g         * 
+FILE=_Bdel_cychdr
+                                  00305834  00305843        10
+  _Bdel_cychdr
+                                  00305834         0   none ,g         * 
+FILE=_Bdisp_AllClr_VRAM
+                                  00305844  00305853        10
+  _Bdisp_AllClr_VRAM
+                                  00305844         0   none ,g         * 
+FILE=_Bdisp_PutDisp_DD
+                                  00305854  00305863        10
+  _Bdisp_PutDisp_DD
+                                  00305854         0   none ,g         * 
+FILE=_Bdisp_WriteGraph_VRAM
+                                  00305864  00305873        10
+  _Bdisp_WriteGraph_VRAM
+                                  00305864         0   none ,g         * 
+FILE=_BfileFLS_CloseFile
+                                  00305874  00305883        10
+  _BfileFLS_CloseFile
+                                  00305874         0   none ,g         * 
+FILE=_Bkey_Set_RepeatTime_Default
+                                  00305884  00305893        10
+  _Bkey_Set_RepeatTime_Default
+                                  00305884         0   none ,g         * 
+FILE=_CallbackAtQuitMainFunction
+                                  00305894  003058a3        10
+  _CallbackAtQuitMainFunction
+                                  00305894         0   none ,g         * 
+FILE=_flsFindClose
+                                  003058a4  003058b3        10
+  _flsFindClose
+                                  003058a4         0   none ,g         * 
+FILE=_free
+                                  003058b4  003058c3        10
+  _free
+                                  003058b4         0   none ,g         * 
+FILE=_getkey
+                                  003058c4  003058d3        10
+  _GetKey
+                                  003058c4         0   none ,g         * 
+FILE=_GLibAddinAplExecutionCheck
+                                  003058d4  003058e3        10
+  _GLibAddinAplExecutionCheck
+                                  003058d4         0   none ,g         * 
+FILE=_Hmem_SetMMU
+                                  003058e4  003058f3        10
+  _Hmem_SetMMU
+                                  003058e4         0   none ,g         * 
+FILE=_malloc
+                                  003058f4  00305903        10
+  _malloc
+                                  003058f4         0   none ,g         * 
+FILE=dispbios
+                                  00305904  00305a79       176
+  _PrintMini
+                                  00305904        1c   func ,g         * 
+  _locate
+                                  00305920        28   func ,g         * 
+  _Bdisp_ReadArea_DD
+                                  00305948       132   func ,g         * 
+FILE=keybios
+                                  00305a7c  00305dbf       344
+  _GetKeyWait
+                                  00305a7c        40   func ,g         * 
+  _Bkey_GetKeyTableInfo
+                                  00305abc        5c   func ,g         * 
+  _KeyCodeConvert
+                                  00305b18        78   func ,g         * 
+  _END$270
+                                  00305b56         0   none ,l         * 
+  __Delay
+                                  00305b90        88   func ,g         * 
+  _Hkey_Check_Key_SDK
+                                  00305c18       12c   func ,g         * 
+  _IsKeyDown
+                                  00305d44        30   func ,g         * 
+  _IsKeyUp
+                                  00305d74        4c   func ,g         * 
+FILE=timer
+                                  00305dc0  00305ebf       100
+  _GetSDKLibraryVersion
+                                  00305dc0         6   func ,g         * 
+  _SetTimer
+                                  00305dc6        54   func ,g         * 
+  _KillTimer
+                                  00305e1a        44   func ,g         * 
+  _Sleep
+                                  00305e5e        62   func ,g         * 
+FILE=__q_scpy
+                                  00305ec0  00305f27        68
+  __quick_strcpy
+                                  00305ec0         0   none ,g         * 
+  _quick_strcpy1
+                                  00305ec4         0   none ,g         * 
+  FCPY_L
+                                  00305ece         0   none ,l         * 
+  FCPY_NULL1
+                                  00305ef2         0   none ,l         * 
+  FCPY_NULL2
+                                  00305ef6         0   none ,l         * 
+  FCPY_NULL3
+                                  00305efa         0   none ,l         * 
+  FCPY_NULL
+                                  00305efc         0   none ,l         * 
+  FCPY_B
+                                  00305f02         0   none ,l         * 
+  FCPY_END
+                                  00305f1c         0   none ,l         * 
+FILE=_Bcre_cychdr
+                                  00305f28  00305f37        10
+  _Bcre_cychdr
+                                  00305f28         0   none ,g         * 
+FILE=_Bkey_GetKeyTableInfoJumpFunc
+                                  00305f38  00305f47        10
+  _Bkey_GetKeyTableInfoJumpFunc
+                                  00305f38         0   none ,g         * 
+FILE=_Bkey_GetKeyWait
+                                  00305f48  00305f57        10
+  _Bkey_GetKeyWait
+                                  00305f48         0   none ,g         * 
+FILE=_BSrl_DummyWAIT
+                                  00305f58  00305f67        10
+  _BSrl_DummyWAIT
+                                  00305f58         0   none ,g         * 
+FILE=_Bsta_cychdr
+                                  00305f68  00305f77        10
+  _Bsta_cychdr
+                                  00305f68         0   none ,g         * 
+FILE=_Bstp_cychdr
+                                  00305f78  00305f87        10
+  _Bstp_cychdr
+                                  00305f78         0   none ,g         * 
+FILE=_Chattering
+                                  00305f88  00305f97        10
+  _Chattering
+                                  00305f88         0   none ,g         * 
+FILE=_DD_GET
+                                  00305f98  00305fa7        10
+  _DD_GET
+                                  00305f98         0   none ,g         * 
+FILE=_GLibGetAddinLibInfo
+                                  00305fa8  00305fb7        10
+  _GLibGetAddinLibInfo
+                                  00305fa8         0   none ,g         * 
+FILE=_GLibGetOSVersionInfo
+                                  00305fb8  00305fc7        10
+  _GLibGetOSVersionInfo
+                                  00305fb8         0   none ,g         * 
+FILE=_locate
+                                  00305fc8  00305fd7        10
+  _locate_OS
+                                  00305fc8         0   none ,g         * 
+FILE=_PrintMiniSd
+                                  00305fd8  00305fe7        10
+  _PrintMiniSd
+                                  00305fd8         0   none ,g         * 
+FILE=_SetIntFlagPaturn
+                                  00305fe8  00305ff7        10
+  _SetIntFlagPaturn
+                                  00305fe8         0   none ,g         * 
+
+SECTION=C
+FILE=E:\Anderain\fx-9860\Orton\Debug\game.obj
+                                  00305ff8  00306007        10
+  _sc0015
+                                  00305ff8        10   data ,g         * 
+FILE=addin_sct
+                                  00308ecc  00308edf        14
+  _B_BGN
+                                  00308ecc         0   none ,g         * 
+  _B_END
+                                  00308ed0         0   none ,g         * 
+  _R_BGN
+                                  00308ed4         0   none ,g         * 
+  _R_END
+                                  00308ed8         0   none ,g         * 
+  _D_ROM
+                                  00308edc         0   none ,g         * 
+FILE=keybios
+                                  00308ee0  00309047       168
+  _gb_KeyCodeTable
+                                  00308ee0       150   data ,l         * 
+  _gb_usKoState
+                                  00309030        18   data ,l         * 
+
+SECTION=B_BR_Size
+FILE=E:\Anderain\fx-9860\Orton\Debug\main.obj
+                                  08100000  08100003         4
+  _BR_Size
+                                  08100000         4   data ,g         * 
+
+SECTION=B
+FILE=E:\Anderain\fx-9860\Orton\Debug\draw.obj
+                                  08100004  08100463       460
+  _vbuf
+                                  08100004       400   data ,g         * 
+  _spike_down
+                                  08100404         8   data ,l         * 
+  _spike_left
+                                  0810040c         8   data ,l         * 
+  _spike_right
+                                  08100414         8   data ,l         * 
+  _thrower_down
+                                  0810041c         8   data ,l         * 
+  _thrower_left
+                                  08100424         8   data ,l         * 
+  _thrower_right
+                                  0810042c         8   data ,l         * 
+  _orton_run1_left
+                                  08100434         8   data ,l         * 
+  _orton_run2_left
+                                  0810043c         8   data ,l         * 
+  _orton_run3_left
+                                  08100444         8   data ,l         * 
+  _orton_run4_left
+                                  0810044c         8   data ,l         * 
+  _orton_stop_left
+                                  08100454         8   data ,l         * 
+  _orton_jump_left
+                                  0810045c         8   data ,l         * 
+FILE=E:\Anderain\fx-9860\Orton\Debug\game.obj
+                                  08100464  0810046b         8
+  _current_message$487
+                                  08100464         4   data ,l         * 
+  _id_level$489
+                                  08100468         4   data ,l         * 
+FILE=E:\Anderain\fx-9860\Orton\Debug\main.obj
+                                  0810046c  081004bb        50
+  _exit_jmp
+                                  0810046c        50   data ,g         * 
+FILE=longjmp
+                                  081004bc  081004bf         4
+  work
+                                  081004bc         0   none ,l         * 
+FILE=_errno
+                                  081004c0  081004c3         4
+  __errno
+                                  081004c0         4   data ,g         * 
+
+SECTION=R
+FILE=E:\Anderain\fx-9860\Orton\Debug\draw.obj
+                                  081004c4  081005e3       120
+  _wall
+                                  081004c4         8   data ,l         * 
+  _wall_top
+                                  081004cc         8   data ,l         * 
+  _spike_up
+                                  081004d4         8   data ,l         * 
+  _thrower_up
+                                  081004dc         8   data ,l         * 
+  _bullet_left
+                                  081004e4         8   data ,l         * 
+  _bullet_right
+                                  081004ec         8   data ,l         * 
+  _bullet_up
+                                  081004f4         8   data ,l         * 
+  _bullet_down
+                                  081004fc         8   data ,l         * 
+  _stone
+                                  08100504         8   data ,l         * 
+  _orton_run1_right
+                                  0810050c         8   data ,l         * 
+  _orton_run2_right
+                                  08100514         8   data ,l         * 
+  _orton_run3_right
+                                  0810051c         8   data ,l         * 
+  _orton_run4_right
+                                  08100524         8   data ,l         * 
+  _orton_stop_right
+                                  0810052c         8   data ,l         * 
+  _orton_jump_right
+                                  08100534         8   data ,l         * 
+  _explosion1
+                                  0810053c         8   data ,l         * 
+  _explosion2
+                                  08100544         8   data ,l         * 
+  _explosion3
+                                  0810054c         8   data ,l         * 
+  _bitmap
+                                  08100554        90   data ,l         * 
+FILE=E:\Anderain\fx-9860\Orton\Debug\game.obj
+                                  081005e4  081005e7         4
+  _time$488
+                                  081005e4         4   data ,l         * 
+FILE=C:\Program Files\CASIO\fx-9860G SDK\OS\FX\lib\setup.obj
+                                  081005e8  081005eb         4
+  _gb_OnAppClose
+                                  081005e8         4   data ,g         * 
+FILE=keybios
+                                  081005ec  081005ef         4
+  _gb_pKeyMatrix
+                                  081005ec         4   data ,g         * 
+FILE=_rnext
+                                  081005f0  081005f3         4
+  __rnext
+                                  081005f0         4   data ,g         * 
+
+Absolute value symbols
+FILE=__divls
+  zerodiv
+                                  0000044e         0   none ,l         * 
+FILE=__modls
+  zerodiv
+                                  0000044e         0   none ,l         * 
+FILE=_Bdel_cychdr
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bdisp_AllClr_VRAM
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bdisp_PutDisp_DD
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bdisp_WriteGraph_VRAM
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_BfileFLS_CloseFile
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bkey_Set_RepeatTime_Default
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_CallbackAtQuitMainFunction
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_flsFindClose
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_free
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_getkey
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_GLibAddinAplExecutionCheck
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Hmem_SetMMU
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_malloc
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bcre_cychdr
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bkey_GetKeyTableInfoJumpFunc
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bkey_GetKeyWait
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_BSrl_DummyWAIT
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bsta_cychdr
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Bstp_cychdr
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_Chattering
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_DD_GET
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_GLibGetAddinLibInfo
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_GLibGetOSVersionInfo
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_locate
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_PrintMiniSd
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+FILE=_SetIntFlagPaturn
+  __JumpTableTOP
+                                  80010070         0   none ,l         * 
+
+*** Delete Symbols ***
+
+SYMBOL                                SIZE    INFO
+
+*** Variable Accessible with Abs8 ***
+
+SYMBOL                                SIZE    COUNTS  OPTIMIZE
+
+*** Variable Accessible with Abs16 ***
+
+SYMBOL                                SIZE    COUNTS  OPTIMIZE
+
+*** Function Call ***
+
+SYMBOL                              COUNTS  OPTIMIZE

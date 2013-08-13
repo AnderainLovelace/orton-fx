@@ -1,0 +1,467 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:35  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: E:\Anderain\fx-9860\Orton\time.c
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          time.c     1    struct st_rtc {                                         /* struct RTC   */
+          time.c     2                  unsigned char     R64CNT;                 /* R64CNT       */
+          time.c     3                  char              wk1;                    /*              */
+          time.c     4                  union {                                   /* RSECCNT      */
+          time.c     5                        unsigned char BYTE;                 /*  Byte Access */
+          time.c     6                        struct {                            /*  Bit  Access */
+          time.c     7                               unsigned char    :1;         /*              */
+          time.c     8                               unsigned char S10:3;         /*    10sec     */
+          time.c     9                               unsigned char S1 :4;         /*     1sec     */
+          time.c    10                               }      BIT;                  /*              */
+          time.c    11                        }           RSECCNT;                /*              */
+          time.c    12                  char              wk2;                    /*              */
+          time.c    13                  union {                                   /* RMINCNT      */
+          time.c    14                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    15                        struct {                            /*  Bit  Access */
+          time.c    16                               unsigned char    :1;         /*              */
+          time.c    17                               unsigned char M10:3;         /*    10min     */
+          time.c    18                               unsigned char M1 :4;         /*     1min     */
+          time.c    19                               }      BIT;                  /*              */
+          time.c    20                        }           RMINCNT;                /*              */
+          time.c    21                  char              wk3;                    /*              */
+          time.c    22                  union {                                   /* RHRCNT       */
+          time.c    23                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    24                        struct {                            /*  Bit  Access */
+          time.c    25                               unsigned char    :2;         /*              */
+          time.c    26                               unsigned char H10:2;         /*    10sec     */
+          time.c    27                               unsigned char H1 :4;         /*     1sec     */
+          time.c    28                               }      BIT;                  /*              */
+          time.c    29                        }           RHRCNT;                 /*              */
+          time.c    30                  char              wk4;                    /*              */
+          time.c    31                  union {                                   /* RWKCNT       */
+          time.c    32                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    33                        struct {                            /*  Bit  Access */
+          time.c    34                               unsigned char   :5;          /*              */
+          time.c    35                               unsigned char WK:3;          /*    week      */
+          time.c    36                               }      BIT;                  /*              */
+          time.c    37                        }           RWKCNT;                 /*              */
+          time.c    38                  char              wk5;                    /*              */
+          time.c    39                  union {                                   /* RDAYCNT      */
+          time.c    40                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    41                        struct {                            /*  Bit  Access */
+          time.c    42                               unsigned char    :2;         /*              */
+          time.c    43                               unsigned char D10:2;         /*    10day     */
+          time.c    44                               unsigned char D1 :4;         /*     1day     */
+          time.c    45                               }      BIT;                  /*              */
+          time.c    46                        }           RDAYCNT;                /*              */
+          time.c    47                  char              wk6;                    /*              */
+          time.c    48                  union {                                   /* RMONCNT      */
+          time.c    49                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    50                        struct {                            /*  Bit  Access */
+          time.c    51                               unsigned char    :3;         /*              */
+          time.c    52                               unsigned char M10:1;         /*    10mon     */
+          time.c    53                               unsigned char M1 :4;         /*     1mon     */
+          time.c    54                               }      BIT;                  /*              */
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:35  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          time.c    55                        }          RMONCNT;                 /*              */
+          time.c    56                  char             wk7;                     /*              */
+          time.c    57                  union {                                   /* RYRCNT       */
+          time.c    58                        unsigned short WORD;                /*  Word Access */
+          time.c    59                        struct {                            /*  Bit  Access */
+          time.c    60                               unsigned short Y1000:4;      /*   1000year   */
+          time.c    61                               unsigned short Y100 :4;      /*    100year   */
+          time.c    62                               unsigned short Y10  :4;      /*     10year   */
+          time.c    63                               unsigned short Y1   :4;      /*      1year   */
+          time.c    64                               }       BIT;                 /*              */
+          time.c    65                        }           RYRCNT;                 /*              */
+          time.c    66                  union {                                   /* RSECAR       */
+          time.c    67                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    68                        struct {                            /*  Bit  Access */
+          time.c    69                               unsigned char ENB:1;         /*    ENB       */
+          time.c    70                               unsigned char S10:3;         /*    10sec     */
+          time.c    71                               unsigned char S1 :4;         /*     1sec     */
+          time.c    72                               }      BIT;                  /*              */
+          time.c    73                        }           RSECAR;                 /*              */
+          time.c    74                  char              wk8;                    /*              */
+          time.c    75                  union {                                   /* RMINAR       */
+          time.c    76                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    77                        struct {                            /*  Bit  Access */
+          time.c    78                               unsigned char ENB:1;         /*    ENB       */
+          time.c    79                               unsigned char M10:3;         /*    10min     */
+          time.c    80                               unsigned char M1 :4;         /*     1min     */
+          time.c    81                               }      BIT;                  /*              */
+          time.c    82                        }           RMINAR;                 /*              */
+          time.c    83                  char              wk9;                    /*              */
+          time.c    84                  union {                                   /* RHRAR        */
+          time.c    85                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    86                        struct {                            /*  Bit  Access */
+          time.c    87                               unsigned char ENB:1;         /*    ENB       */
+          time.c    88                               unsigned char    :1;         /*              */
+          time.c    89                               unsigned char H10:2;         /*    10sec     */
+          time.c    90                               unsigned char H1 :4;         /*     1sec     */
+          time.c    91                               }      BIT;                  /*              */
+          time.c    92                        }           RHRAR;                  /*              */
+          time.c    93                  char              wk10;                   /*              */
+          time.c    94                  union {                                   /* RWKAR        */
+          time.c    95                        unsigned char BYTE;                 /*  Byte Access */
+          time.c    96                        struct {                            /*  Bit  Access */
+          time.c    97                               unsigned char ENB:1;         /*    ENB       */
+          time.c    98                               unsigned char    :4;         /*              */
+          time.c    99                               unsigned char WK :3;         /*    week      */
+          time.c   100                               }      BIT;                  /*              */
+          time.c   101                        }           RWKAR;                  /*              */
+          time.c   102                  char              wk11;                   /*              */
+          time.c   103                  union {                                   /* RDAYAR       */
+          time.c   104                        unsigned char BYTE;                 /*  Byte Access */
+          time.c   105                        struct {                            /*  Bit  Access */
+          time.c   106                               unsigned char ENB:1;         /*    ENB       */
+          time.c   107                               unsigned char    :1;         /*              */
+          time.c   108                               unsigned char D10:2;         /*    10day     */
+          time.c   109                               unsigned char D1 :4;         /*     1day     */
+          time.c   110                               }      BIT;                  /*              */
+          time.c   111                        }           RDAYAR;                 /*              */
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:35  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          time.c   112                  char              wk12;                   /*              */
+          time.c   113                  union {                                   /* RMONAR       */
+          time.c   114                        unsigned char BYTE;                 /*  Byte Access */
+          time.c   115                        struct {                            /*  Bit  Access */
+          time.c   116                               unsigned char ENB:1;         /*    ENB       */
+          time.c   117                               unsigned char    :2;         /*              */
+          time.c   118                               unsigned char M10:1;         /*    10mon     */
+          time.c   119                               unsigned char M1 :4;         /*     1mon     */
+          time.c   120                               }      BIT;                  /*              */
+          time.c   121                        }           RMONAR;                 /*              */
+          time.c   122                  char              wk13;                   /*              */
+          time.c   123                  union {                                   /* RCR1         */
+          time.c   124                        unsigned char BYTE;                 /*  Byte Access */
+          time.c   125                        struct {                            /*  Bit  Access */
+          time.c   126                               unsigned char CF :1;         /*    CF        */
+          time.c   127                               unsigned char    :2;         /*              */
+          time.c   128                               unsigned char CIE:1;         /*    CIE       */
+          time.c   129                               unsigned char AIE:1;         /*    AIE       */
+          time.c   130                               unsigned char    :2;         /*              */
+          time.c   131                               unsigned char AF :1;         /*    AF        */
+          time.c   132                               }      BIT;                  /*              */
+          time.c   133                        }           RCR1;                   /*              */
+          time.c   134                  char              wk14;                   /*              */
+          time.c   135                  union {                                   /* RCR2         */
+          time.c   136                        unsigned char BYTE;                 /*  Byte Access */
+          time.c   137                        struct {                            /*  Bit  Access */
+          time.c   138                               unsigned char PEF  :1;       /*    PEF       */
+          time.c   139                               unsigned char PES  :3;       /*    PES       */
+          time.c   140                               unsigned char RTCEN:1;       /*    RTCEN     */
+          time.c   141                               unsigned char ADJ  :1;       /*    ADJ       */
+          time.c   142                               unsigned char RESET:1;       /*    RESET     */
+          time.c   143                               unsigned char START:1;       /*    START     */
+          time.c   144                               }      BIT;                  /*              */
+          time.c   145                        }           RCR2;                   /*              */
+          time.c   146    };
+          time.c   147    
+          time.c   148    #define RTC   (*(volatile struct st_rtc   *)0xFFFFFEC0) /* RTC   Address*/
+          time.c   149    
+          time.c   150    int RTCReadHour()
+P   00000000              _RTCReadHour:                    ; function: RTCReadHour
+                                                           ; frame size=4
+                                                           ; used runtime library name:
+                                                           ; __bfxbu
+    00000000 4F22                   STS.L       PR,@-R15
+          time.c   151    {
+          time.c   152            int hour;
+          time.c   153            RTC.RCR1.BIT.CIE = 0;
+    00000002 946C                   MOV.W       L248,R4    ; H'FEC0
+    00000004 6343                   MOV         R4,R3
+    00000006 731C                   ADD         #28,R3
+    00000008 6030                   MOV.B       @R3,R0
+    0000000A C9EF                   AND         #239,R0
+    0000000C 2300                   MOV.B       R0,@R3
+          time.c   154            RTC.RCR1.BIT.CF = 0;
+    0000000E 6243                   MOV         R4,R2
+    00000010 721C                   ADD         #28,R2
+    00000012 6020                   MOV.B       @R2,R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:35  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000014 C97F                   AND         #127,R0
+    00000016 2200                   MOV.B       R0,@R2
+          time.c   155            hour = (RTC.RHRCNT.BIT.H10 * 10) + RTC.RHRCNT.BIT.H1;
+    00000018 9162                   MOV.W       L248+2,R1  ; H'0202
+    0000001A 6243                   MOV         R4,R2
+    0000001C D332                   MOV.L       L248+10,R3 ; __bfxbu
+    0000001E 430B                   JSR         @R3
+    00000020 7206                   ADD         #6,R2
+    00000022 6303                   MOV         R0,R3
+    00000024 4008                   SHLL2       R0
+    00000026 303C                   ADD         R3,R0
+    00000028 4000                   SHLL        R0
+    0000002A 6203                   MOV         R0,R2
+    0000002C 6043                   MOV         R4,R0
+    0000002E 8406                   MOV.B       @(6,R0),R0
+    00000030 C90F                   AND         #15,R0
+    00000032 6423                   MOV         R2,R4
+          time.c   156            return hour;
+          time.c   157    }
+    00000034 4F26                   LDS.L       @R15+,PR
+    00000036 340C                   ADD         R0,R4
+    00000038 000B                   RTS
+    0000003A 6043                   MOV         R4,R0
+          time.c   158    
+          time.c   159    int RTCReadMinute()
+    0000003C              _RTCReadMinute:                  ; function: RTCReadMinute
+                                                           ; frame size=4
+                                                           ; used runtime library name:
+                                                           ; __bfxbu
+    0000003C 4F22                   STS.L       PR,@-R15
+          time.c   160    {
+          time.c   161            int minute;
+          time.c   162            RTC.RCR1.BIT.CIE = 0;
+    0000003E 944E                   MOV.W       L248,R4    ; H'FEC0
+    00000040 6343                   MOV         R4,R3
+    00000042 731C                   ADD         #28,R3
+    00000044 6030                   MOV.B       @R3,R0
+    00000046 C9EF                   AND         #239,R0
+    00000048 2300                   MOV.B       R0,@R3
+          time.c   163            RTC.RCR1.BIT.CF = 0;
+    0000004A 6243                   MOV         R4,R2
+    0000004C 721C                   ADD         #28,R2
+    0000004E 6020                   MOV.B       @R2,R0
+    00000050 C97F                   AND         #127,R0
+    00000052 2200                   MOV.B       R0,@R2
+          time.c   164            minute = (RTC.RMINCNT.BIT.M10 * 10) + RTC.RMINCNT.BIT.M1;
+    00000054 9145                   MOV.W       L248+4,R1  ; H'0103
+    00000056 6243                   MOV         R4,R2
+    00000058 D323                   MOV.L       L248+10,R3 ; __bfxbu
+    0000005A 430B                   JSR         @R3
+    0000005C 7204                   ADD         #4,R2
+    0000005E 6303                   MOV         R0,R3
+    00000060 4008                   SHLL2       R0
+    00000062 303C                   ADD         R3,R0
+    00000064 4000                   SHLL        R0
+    00000066 6203                   MOV         R0,R2
+    00000068 6043                   MOV         R4,R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:35  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000006A 8404                   MOV.B       @(4,R0),R0
+    0000006C C90F                   AND         #15,R0
+    0000006E 6423                   MOV         R2,R4
+          time.c   165            return minute;
+          time.c   166    }
+    00000070 4F26                   LDS.L       @R15+,PR
+    00000072 340C                   ADD         R0,R4
+    00000074 000B                   RTS
+    00000076 6043                   MOV         R4,R0
+          time.c   167    
+          time.c   168    int RTCReadSecond()
+    00000078              _RTCReadSecond:                  ; function: RTCReadSecond
+                                                           ; frame size=4
+                                                           ; used runtime library name:
+                                                           ; __bfxbu
+    00000078 4F22                   STS.L       PR,@-R15
+          time.c   169    {
+          time.c   170            int second;
+          time.c   171            RTC.RCR1.BIT.CIE = 0;
+    0000007A 9430                   MOV.W       L248,R4    ; H'FEC0
+    0000007C 6343                   MOV         R4,R3
+    0000007E 731C                   ADD         #28,R3
+    00000080 6030                   MOV.B       @R3,R0
+    00000082 C9EF                   AND         #239,R0
+    00000084 2300                   MOV.B       R0,@R3
+          time.c   172            RTC.RCR1.BIT.CF = 0;
+    00000086 6243                   MOV         R4,R2
+    00000088 721C                   ADD         #28,R2
+    0000008A 6020                   MOV.B       @R2,R0
+    0000008C C97F                   AND         #127,R0
+    0000008E 2200                   MOV.B       R0,@R2
+          time.c   173            second = (RTC.RSECCNT.BIT.S10 * 10) + RTC.RSECCNT.BIT.S1;
+    00000090 9127                   MOV.W       L248+4,R1  ; H'0103
+    00000092 6243                   MOV         R4,R2
+    00000094 D314                   MOV.L       L248+10,R3 ; __bfxbu
+    00000096 430B                   JSR         @R3
+    00000098 7202                   ADD         #2,R2
+    0000009A 6303                   MOV         R0,R3
+    0000009C 4008                   SHLL2       R0
+    0000009E 303C                   ADD         R3,R0
+    000000A0 4000                   SHLL        R0
+    000000A2 6203                   MOV         R0,R2
+    000000A4 6043                   MOV         R4,R0
+    000000A6 8402                   MOV.B       @(2,R0),R0
+    000000A8 C90F                   AND         #15,R0
+    000000AA 6423                   MOV         R2,R4
+          time.c   174            return second;
+          time.c   175    }
+    000000AC 4F26                   LDS.L       @R15+,PR
+    000000AE 340C                   ADD         R0,R4
+    000000B0 000B                   RTS
+    000000B2 6043                   MOV         R4,R0
+          time.c   176    
+          time.c   177    int time()
+    000000B4              _time:                           ; function: time
+                                                           ; frame size=12
+    000000B4 2F86                   MOV.L       R8,@-R15
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:35  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000B6 4F22                   STS.L       PR,@-R15
+    000000B8 4F12                   STS.L       MACL,@-R15
+          time.c   178    {
+          time.c   179            return RTCReadHour()*3600 + RTCReadMinute()*60 + RTCReadSecond();
+    000000BA BFA1                   BSR         _RTCReadHour
+    000000BC 0009                   NOP
+    000000BE 9211                   MOV.W       L248+6,R2  ; H'0E10
+    000000C0 0027                   MUL.L       R2,R0
+    000000C2 001A                   STS         MACL,R0
+    000000C4 BFBA                   BSR         _RTCReadMinute
+    000000C6 6803                   MOV         R0,R8
+    000000C8 E13C                   MOV         #60,R1
+    000000CA 0017                   MUL.L       R1,R0
+    000000CC 001A                   STS         MACL,R0
+    000000CE 308C                   ADD         R8,R0
+    000000D0 BFD2                   BSR         _RTCReadSecond
+    000000D2 6803                   MOV         R0,R8
+          time.c   180    }
+    000000D4 4F16                   LDS.L       @R15+,MACL
+    000000D6 308C                   ADD         R8,R0
+    000000D8 4F26                   LDS.L       @R15+,PR
+    000000DA 000B                   RTS
+    000000DC 68F6                   MOV.L       @R15+,R8
+    000000DE              L248:                             
+    000000DE FEC0                   .DATA.W     H'FEC0
+    000000E0 0202                   .DATA.W     H'0202
+    000000E2 0103                   .DATA.W     H'0103
+    000000E4 0E10                   .DATA.W     H'0E10
+    000000E6 0000                   .DATA.W     0
+    000000E8 <00000000>             .DATA.L     __bfxbu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:35  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:         0
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:      180
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               000000EC Byte(s)
+CONSTANT SECTION (C):                               00000000 Byte(s)
+DATA     SECTION (D):                               00000000 Byte(s)
+BSS      SECTION (B):                               00000000 Byte(s)
+
+ TOTAL PROGRAM SIZE: 000000EC Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:            1
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:           4
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:             6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\ADMINI~1\AppData\Local\Temp\hmk9A40.tmp 
+

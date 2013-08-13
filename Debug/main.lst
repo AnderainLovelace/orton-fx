@@ -1,0 +1,929 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: E:\Anderain\fx-9860\Orton\main.c
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          main.c     1    #include <stdlib.h> //for srand
+          main.c     2    #include <fxlib.h> //for Bdisp_PutDisp_DD, PrintMini and GetKey
+          main.c     3    #include "draw.h"
+          main.c     4    #include "game.h"
+          main.c     5    #include "level.h"
+          main.c     6    #include <setjmp.h>
+          main.c     7    
+          main.c     8    jmp_buf exit_jmp;
+          main.c     9    
+          main.c    10    int time();
+          main.c    11    
+          main.c    12    void title()
+P   00000000              _title:                          ; function: title
+                                                           ; frame size=1044
+                                                           ; used runtime library name:
+                                                           ; __slow_mvn
+    00000000 2FE6                   MOV.L       R14,@-R15
+    00000002 2FD6                   MOV.L       R13,@-R15
+    00000004 4F22                   STS.L       PR,@-R15
+    00000006 9085                   MOV.W       L403,R0    ; H'FBFC
+          main.c    13    {
+          main.c    14            char title[]=
+          main.c    15            {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    16            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    17            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    18            0xFF,0xFF,0xFF,0xFF,0xE3,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    19            0xFF,0xF8,0x3F,0xFF,0xE3,0xFF,0xFF,0xFF,0xFF,0xFF,0x3F,0xFF,0xFF,0xF7,0x7F,0xFF,
+          main.c    20            0xFF,0xE0,0xF,0xFF,0xE1,0xFF,0xFF,0xFF,0xFF,0xFF,0x7F,0xF1,0xFF,0xF7,0xFF,0xC7,
+          main.c    21            0xFF,0xC0,0xF,0xF1,0x80,0x70,0xFF,0xFF,0xFF,0xFE,0x26,0x67,0x91,0x11,0x64,0x77,
+          main.c    22            0xFF,0x83,0x86,0x0,0x80,0x60,0x7F,0xFF,0xFF,0xFF,0x5A,0xEC,0xB1,0x55,0x5C,0xEF,
+          main.c    23            0xFF,0x87,0xC6,0x0,0xC0,0xC0,0x3F,0xFF,0xFF,0xFF,0x5A,0xEE,0xAD,0x55,0x5F,0x5F,
+          main.c    24            0xFF,0xF,0xC2,0x8,0xE3,0x86,0x38,0xFF,0xFF,0xFF,0x66,0xF0,0xA1,0x15,0x64,0x47,
+          main.c    25            0xFF,0xF,0xE3,0x1C,0xE3,0x8F,0x38,0x1F,0xFF,0xFF,0xFF,0xFF,0xFF,0x7F,0xFF,0xFF,
+          main.c    26            0xFF,0x1F,0xE3,0x1F,0xE3,0x9F,0x30,0xF,0xFF,0xFF,0xFF,0xFF,0xFF,0x7F,0xFF,0xFF,
+          main.c    27            0xFF,0x1F,0xE3,0x1F,0xE3,0x9E,0x30,0x8F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    28            0xFF,0xF,0xE3,0x1F,0xE3,0x8E,0x31,0x9F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    29            0xFF,0x8F,0xE3,0x9F,0xE3,0x84,0x63,0x1F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    30            0xFF,0x8F,0xC7,0x9F,0xE3,0xC0,0xE3,0x3F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    31            0xFF,0xC7,0xC7,0x9F,0xFF,0xE1,0xE6,0x7F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    32            0xFF,0xC3,0x87,0xFF,0xFF,0xFF,0xE6,0x7F,0xFF,0xFF,0xFF,0xFF,0xFE,0x0,0x1,0xFF,
+          main.c    33            0xFF,0xE0,0xF,0xFF,0xFF,0xFF,0xFE,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0x0,0x1,0xFF,
+          main.c    34            0xFF,0xF0,0x1F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    35            0xFF,0xFC,0x7F,0xFF,0x9F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    36            0xFF,0xFF,0xFF,0xFF,0x8F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    37            0xFF,0xFF,0xFF,0xFF,0xF,0xFF,0xFC,0xFF,0xFD,0xFF,0xFF,0xFF,0xFE,0x1E,0x79,0xFF,
+          main.c    38            0xFF,0xFF,0xFF,0xFF,0x4F,0x2F,0xFC,0xFF,0xFD,0xFF,0xF,0xFF,0xFE,0x1E,0x79,0xFF,
+          main.c    39            0xFF,0xFF,0xFF,0xFF,0x6F,0x7,0xFD,0xFF,0xFC,0xFE,0x27,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    40            0xFF,0xFF,0xFF,0xFE,0x6F,0x17,0x1,0xFF,0x3C,0xCE,0x6F,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    41            0xFF,0xFF,0xFF,0xFE,0x7,0x36,0x61,0xFF,0x1C,0x86,0xCF,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    42            0xFF,0xFF,0xFF,0xFE,0x7,0x36,0xF3,0xFE,0xC,0x26,0x1F,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    43            0xFF,0xFF,0xFF,0xFC,0x67,0x76,0xF3,0xFE,0xE,0x72,0x33,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    44            0xFF,0xFF,0xFF,0xFC,0xF3,0x66,0xF3,0xFF,0x3E,0x73,0x7,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    45            0xFF,0xFF,0xFF,0xFC,0xFF,0x66,0x63,0xFF,0x3E,0x73,0x9F,0xFF,0xFE,0x7F,0xF9,0xFF,
+          main.c    46            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x7,0xFF,0x3E,0x79,0xFF,0xFF,0xFE,0x0,0x1,0xFF,
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          main.c    47            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xE7,0xFF,0x3E,0x7F,0xFF,0xFF,0xFE,0x0,0x1,0xFF,
+          main.c    48            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x3E,0x7F,0xFF,0xFF,0xFF,0xE7,0x9F,0xFF,
+          main.c    49            0xFF,0xFF,0xF8,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xE7,0x9F,0xFF,
+          main.c    50            0xFF,0xFF,0xF0,0x3F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xC3,0xFF,0xE7,0xFF,0xFF,
+          main.c    51            0xFF,0xFF,0xF0,0x1F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x81,0xFF,0xFF,0xF3,0xFF,
+          main.c    52            0xFF,0xFF,0xF3,0xF,0xFF,0x9F,0xFF,0xFF,0xFF,0xFF,0xFF,0x9,0xFF,0xF9,0xF3,0xFF,
+          main.c    53            0xFF,0xFF,0xE3,0x8F,0xFF,0xF,0xFF,0xFF,0xFF,0xFF,0x8E,0x3F,0xFF,0xF9,0xFF,0xFF,
+          main.c    54            0xFF,0xFF,0xE3,0xCF,0xFF,0x9F,0xFF,0xFF,0xFF,0xFE,0x6,0x3F,0xFF,0xFF,0xFF,0xFF,
+          main.c    55            0xFF,0xFF,0xE3,0xCF,0xFF,0xFF,0xFF,0xFF,0xFC,0x3C,0x7,0x0,0xFF,0xFF,0xFF,0xFF,
+          main.c    56            0xFF,0xFF,0xC1,0xE,0x7F,0xFF,0xFF,0xFF,0xF0,0x1C,0xFF,0xF8,0x7F,0xFF,0xFF,0xFF,
+          main.c    57            0xFF,0xFF,0xC0,0x1E,0x3,0xFE,0x67,0xC1,0xE0,0x1C,0x7F,0xFC,0x7F,0xFF,0xFF,0xFF,
+          main.c    58            0xFF,0xFF,0x80,0x3C,0x1,0x9C,0x43,0x80,0xE3,0x1E,0x7,0x90,0xFF,0xFF,0xFF,0xFF,
+          main.c    59            0xFF,0xFF,0x8F,0xFC,0x11,0x9C,0x3,0x8C,0xC6,0x3F,0xE3,0x80,0xFF,0xFF,0xFF,0xFF,
+          main.c    60            0xFF,0xFF,0x8F,0xFC,0x71,0x9C,0x33,0x1F,0xC0,0x7F,0xF3,0xC3,0xFF,0xFF,0xFF,0xFF,
+          main.c    61            0xFF,0xFF,0xF,0xFC,0x7B,0x9C,0x33,0x1F,0xC1,0xFE,0xC3,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    62            0xFF,0xFF,0x1F,0xF8,0xFF,0x1C,0x73,0x3F,0xC7,0xCE,0x3,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    63            0xFF,0xFF,0x9F,0xF8,0xFF,0x1C,0x73,0x3F,0xC3,0xF,0xF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    64            0xFF,0xFF,0xFF,0xF8,0xFF,0x1C,0x73,0xC,0x60,0x1F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    65            0xFF,0xFF,0xFF,0xF8,0xFF,0x1C,0x73,0x80,0x70,0x3F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    66            0xFF,0xFF,0xFF,0xFF,0xFF,0x1C,0x73,0xC1,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    67            0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0x7F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    68            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    69            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    70            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xDF,0xFF,0x7F,0xFF,0xFF,0xFF,
+          main.c    71            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0x7F,0xFF,0xFF,0x5F,0xFF,0x5F,0xFF,0xFF,0xFF,
+          main.c    72            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0xB7,0xFF,0xFF,0xDB,0xFF,0x7F,0xFF,0x77,0x7F,
+          main.c    73            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0x6A,0x44,0x11,0x55,0xFC,0x51,0x82,0xA2,0xAB,
+          main.c    74            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0xA6,0xD5,0x55,0x53,0xD,0x55,0xAA,0x76,0x67,
+          main.c    75            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0xAE,0xD5,0x55,0x57,0xFD,0x55,0xAA,0xF6,0xEF,
+          main.c    76            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFE,0xA2,0x45,0x51,0x51,0xFC,0x50,0xAA,0x32,0x2F,
+          main.c    77            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xF7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+          main.c    78            0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+    00000008 D246                   MOV.L       L403+16,R2 ; L342
+    0000000A 3F0C                   ADD         R0,R15
+    0000000C D346                   MOV.L       L403+20,R3 ; __slow_mvn
+    0000000E 61F3                   MOV         R15,R1
+    00000010 9081                   MOV.W       L403+2,R0  ; H'0400
+    00000012 430B                   JSR         @R3
+    00000014 7104                   ADD         #4,R1
+          main.c    79            int key=0, i;
+    00000016 E100                   MOV         #0,R1
+    00000018 2F12                   MOV.L       R1,@R15
+          main.c    80            write_graph(0,0,128,64,title);
+    0000001A 63F3                   MOV         R15,R3
+    0000001C 7304                   ADD         #4,R3
+    0000001E E740                   MOV         #64,R7
+    00000020 2F36                   MOV.L       R3,@-R15
+    00000022 6513                   MOV         R1,R5
+    00000024 6673                   MOV         R7,R6
+    00000026 6413                   MOV         R1,R4
+    00000028 D140                   MOV.L       L403+24,R1 ; _write_graph
+    0000002A 410B                   JSR         @R1
+    0000002C 7640                   ADD         #64,R6
+    0000002E DD40                   MOV.L       L403+28,R13; _GetKey
+    00000030 9E72                   MOV.W       L403+4,R14 ; H'7534
+          main.c    81            while(key != KEY_CTRL_EXE) GetKey(&key);
+    00000032 A002                   BRA         L388
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000034 7F04                   ADD         #4,R15
+    00000036              L389:                             
+    00000036 4D0B                   JSR         @R13
+    00000038 64F3                   MOV         R15,R4
+    0000003A              L388:                             
+    0000003A 62F2                   MOV.L       @R15,R2
+    0000003C 32E0                   CMP/EQ      R14,R2
+    0000003E 8BFA                   BF          L389
+          main.c    82    }
+    00000040 916B                   MOV.W       L403+6,R1  ; H'0404
+    00000042 3F1C                   ADD         R1,R15
+    00000044 4F26                   LDS.L       @R15+,PR
+    00000046 6DF6                   MOV.L       @R15+,R13
+    00000048 000B                   RTS
+    0000004A 6EF6                   MOV.L       @R15+,R14
+          main.c    83    
+          main.c    84    void end(int n)
+    0000004C              _end:                            ; function: end
+                                                           ; frame size=180
+                                                           ; used runtime library name:
+                                                           ; __slow_mvn
+    0000004C 2FE6                   MOV.L       R14,@-R15
+    0000004E 2FD6                   MOV.L       R13,@-R15
+    00000050 4F22                   STS.L       PR,@-R15
+    00000052 9063                   MOV.W       L403+8,R0  ; H'FF5C
+          main.c    85    {
+          main.c    86            char bmp[] = {255, 255, 255, 255, 255, 255, 255, 255, 254, 0, 255, 255, 255, 255, 255, 255, 255, 2
+                         +55, 255, 255, 255, 255, 255, 255, 254, 0, 127, 255, 255, 255, 255, 255, 255, 255, 255, 255, 252, 239, 255,
+                         + 255, 254, 0, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 192, 71, 255, 255, 254, 63, 255, 255, 207,
+                         + 255, 255, 255, 255, 255, 255, 252, 0, 71, 255, 255, 254, 63, 255, 2555, 255, 227, 241, 152, 7, 254, 0, 15
+                         +6, 134, 63, 255, 255, 255, 255, 255, 255, 255, 227, 241, 156, 15, 255, 0, 156, 192, 63, 255, 255, 255, 255
+                         +, 255, 255, 255, 227, 241, 255, 255, 255, 255, 255, 224, 127, 255, 255, 255, 255, 255, 255, 255, 243, 255,
+                         + 255, 255, 255, 255, 255, 248, 127, 255, 255, 255, 255, 255, 255, 255, 243, 255, 255, 255, 255, 255, 255, 
+                         +255, 255, 255, 255, 255};
+    00000054 D237                   MOV.L       L403+32,R2 ; L349
+    00000056 3F0C                   ADD         R0,R15
+    00000058 D333                   MOV.L       L403+20,R3 ; __slow_mvn
+    0000005A 61F3                   MOV         R15,R1
+    0000005C 905F                   MOV.W       L403+10,R0 ; H'0099
+    0000005E 1F41                   MOV.L       R4,@(4,R15)
+    00000060 430B                   JSR         @R3
+    00000062 7108                   ADD         #8,R1
+          main.c    87            int key=0;
+    00000064 E100                   MOV         #0,R1
+          main.c    88            write_graph(0,0,128,64,bmp);
+    00000066 63F3                   MOV         R15,R3
+    00000068 2F12                   MOV.L       R1,@R15
+    0000006A E740                   MOV         #64,R7
+    0000006C 7308                   ADD         #8,R3
+    0000006E 6673                   MOV         R7,R6
+    00000070 2F36                   MOV.L       R3,@-R15
+    00000072 6513                   MOV         R1,R5
+    00000074 6413                   MOV         R1,R4
+    00000076 D12D                   MOV.L       L403+24,R1 ; _write_graph
+    00000078 410B                   JSR         @R1
+    0000007A 7640                   ADD         #64,R6
+          main.c    89            switch(n)
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000007C DE2E                   MOV.L       L403+36,R14; _PrintMini
+    0000007E 7F04                   ADD         #4,R15
+    00000080 50F1                   MOV.L       @(4,R15),R0
+    00000082 8801                   CMP/EQ      #1,R0
+    00000084 8903                   BT          L380
+    00000086 8802                   CMP/EQ      #2,R0
+    00000088 8910                   BT          L384
+    0000008A A01F                   BRA         L390
+    0000008C 0009                   NOP
+    0000008E              L380:                            ; case label 
+          main.c    90            {
+          main.c    91                    case 1:
+          main.c    92                            //memcpy(vram_adress()+160, bmp, 288);
+          main.c    93                            PrintMini(12, 42, "Doh ! Looks like you missed", MINI_REV);
+    0000008E E712                   MOV         #18,R7
+    00000090 D62A                   MOV.L       L403+40,R6 ; L352
+    00000092 E52A                   MOV         #42,R5
+    00000094 4E0B                   JSR         @R14
+    00000096 E40C                   MOV         #12,R4
+          main.c    94                            PrintMini(24, 49, "the secret ending...", MINI_REV);
+    00000098 D629                   MOV.L       L403+44,R6 ; L353
+    0000009A E531                   MOV         #49,R5
+    0000009C E712                   MOV         #18,R7
+    0000009E 4E0B                   JSR         @R14
+    000000A0 E418                   MOV         #24,R4
+          main.c    95                            PrintMini(1, 57, "Press EXE if you want to find it.", MINI_REV);
+    000000A2 E712                   MOV         #18,R7
+    000000A4 D627                   MOV.L       L403+48,R6 ; L354
+    000000A6 E539                   MOV         #57,R5
+          main.c    96                            break;
+    000000A8 A00E                   BRA         L401
+    000000AA E401                   MOV         #1,R4
+    000000AC              L384:                            ; case label 
+          main.c    97                    case 2:
+          main.c    98                            //memcpy(vram_adress()+256, bmp, 288);
+          main.c    99                            PrintMini(16, 42, "...and they lived happily", MINI_REV);
+    000000AC D626                   MOV.L       L403+52,R6 ; L355
+    000000AE E52A                   MOV         #42,R5
+    000000B0 E712                   MOV         #18,R7
+    000000B2 4E0B                   JSR         @R14
+    000000B4 E410                   MOV         #16,R4
+          main.c   100                            PrintMini(44, 49, "ever after.", MINI_REV);
+    000000B6 E712                   MOV         #18,R7
+    000000B8 D624                   MOV.L       L403+56,R6 ; L356
+    000000BA E531                   MOV         #49,R5
+    000000BC 4E0B                   JSR         @R14
+    000000BE E42C                   MOV         #44,R4
+          main.c   101                            PrintMini(38, 57, "Well, almost.", MINI_REV);
+    000000C0 D623                   MOV.L       L403+60,R6 ; L357
+    000000C2 E539                   MOV         #57,R5
+    000000C4 E712                   MOV         #18,R7
+    000000C6 E426                   MOV         #38,R4
+          main.c   102                            break;
+    000000C8              L401:                             
+    000000C8 4E0B                   JSR         @R14
+    000000CA 0009                   NOP
+    000000CC              L390:                             
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          main.c   103            }
+          main.c   104            Bdisp_PutDisp_DD();
+    000000CC D321                   MOV.L       L403+64,R3 ; _Bdisp_PutDisp_DD
+    000000CE 430B                   JSR         @R3
+    000000D0 0009                   NOP
+          main.c   105            IsKeyDown(KEY_CTRL_EXE);
+    000000D2 9E21                   MOV.W       L403+4,R14 ; H'7534
+    000000D4 D220                   MOV.L       L403+68,R2 ; _IsKeyDown
+    000000D6 420B                   JSR         @R2
+    000000D8 64E3                   MOV         R14,R4
+    000000DA DD15                   MOV.L       L403+28,R13; _GetKey
+          main.c   106            while(key != KEY_CTRL_EXE) GetKey(&key);
+    000000DC A002                   BRA         L391
+    000000DE 0009                   NOP
+    000000E0              L392:                             
+    000000E0 4D0B                   JSR         @R13
+    000000E2 64F3                   MOV         R15,R4
+    000000E4              L391:                             
+    000000E4 62F2                   MOV.L       @R15,R2
+    000000E6 32E0                   CMP/EQ      R14,R2
+    000000E8 8BFA                   BF          L392
+          main.c   107    }
+    000000EA 9119                   MOV.W       L403+12,R1 ; H'00A4
+    000000EC 3F1C                   ADD         R1,R15
+    000000EE 4F26                   LDS.L       @R15+,PR
+    000000F0 6DF6                   MOV.L       @R15+,R13
+    000000F2 000B                   RTS
+    000000F4 6EF6                   MOV.L       @R15+,R14
+          main.c   108    
+          main.c   109    int AddIn_main(int isAppli, unsigned short OptionNum)
+    000000F6              _AddIn_main:                     ; function: AddIn_main
+                                                           ; frame size=28
+    000000F6 2FE6                   MOV.L       R14,@-R15
+    000000F8 2FD6                   MOV.L       R13,@-R15
+    000000FA 2FC6                   MOV.L       R12,@-R15
+    000000FC 2FB6                   MOV.L       R11,@-R15
+    000000FE 2FA6                   MOV.L       R10,@-R15
+    00000100 2F96                   MOV.L       R9,@-R15
+    00000102 4F22                   STS.L       PR,@-R15
+          main.c   110    {
+          main.c   111            int id_level=0;
+          main.c   112            Level* level;
+          main.c   113    
+          main.c   114            if (setjmp(exit_jmp))
+    00000104 D415                   MOV.L       L403+72,R4 ; _exit_jmp
+    00000106 D316                   MOV.L       L403+76,R3 ; _setjmp
+    00000108 430B                   JSR         @R3
+    0000010A EE00                   MOV         #0,R14
+    0000010C 2008                   TST         R0,R0
+    0000010E 8929                   BT          L393
+          main.c   115            {
+          main.c   116                    return 0;
+    00000110 A060                   BRA         L394
+    00000112 E000                   MOV         #0,R0
+    00000114              L403:                             
+    00000114 FBFC                   .DATA.W     H'FBFC
+    00000116 0400                   .DATA.W     H'0400
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000118 7534                   .DATA.W     H'7534
+    0000011A 0404                   .DATA.W     H'0404
+    0000011C FF5C                   .DATA.W     H'FF5C
+    0000011E 0099                   .DATA.W     H'0099
+    00000120 00A4                   .DATA.W     H'00A4
+    00000122 0000                   .DATA.W     0
+    00000124 <00000000>             .DATA.L     L342
+    00000128 <00000000>             .DATA.L     __slow_mvn
+    0000012C <00000000>             .DATA.L     _write_graph
+    00000130 <00000000>             .DATA.L     _GetKey
+    00000134 <00000000>             .DATA.L     L349
+    00000138 <00000000>             .DATA.L     _PrintMini
+    0000013C <00000000>             .DATA.L     L352
+    00000140 <00000000>             .DATA.L     L353
+    00000144 <00000000>             .DATA.L     L354
+    00000148 <00000000>             .DATA.L     L355
+    0000014C <00000000>             .DATA.L     L356
+    00000150 <00000000>             .DATA.L     L357
+    00000154 <00000000>             .DATA.L     _Bdisp_PutDisp_DD
+    00000158 <00000000>             .DATA.L     _IsKeyDown
+    0000015C <00000000>             .DATA.L     _exit_jmp
+    00000160 <00000000>             .DATA.L     _setjmp
+    00000164              L393:                             
+          main.c   117            }
+          main.c   118    
+          main.c   119            title();
+    00000164 BF4C                   BSR         _title
+    00000166 0009                   NOP
+          main.c   120            srand(time());
+    00000168 D21E                   MOV.L       L404,R2    ; _time
+    0000016A 420B                   JSR         @R2
+    0000016C 0009                   NOP
+    0000016E D31E                   MOV.L       L404+4,R3  ; _srand
+    00000170 430B                   JSR         @R3
+    00000172 6403                   MOV         R0,R4
+          main.c   121            draw_init();
+    00000174 D21D                   MOV.L       L404+8,R2  ; _draw_init
+    00000176 420B                   JSR         @R2
+    00000178 0009                   NOP
+          main.c   122    
+          main.c   123            level = load_level(id_level);
+    0000017A DC1D                   MOV.L       L404+12,R12; _load_level
+    0000017C 4C0B                   JSR         @R12
+    0000017E E400                   MOV         #0,R4
+    00000180 DA1C                   MOV.L       L404+16,R10; _game
+    00000182 6D03                   MOV         R0,R13
+    00000184 DB1C                   MOV.L       L404+20,R11; _free_level
+    00000186 E911                   MOV         #17,R9
+          main.c   124            while(id_level < NB_LEVELS)
+    00000188              L395:                             
+          main.c   125            {
+          main.c   126                    game(level);
+    00000188 4A0B                   JSR         @R10
+    0000018A 64D3                   MOV         R13,R4
+          main.c   127                    free_level(level);
+    0000018C 4B0B                   JSR         @R11
+    0000018E 64D3                   MOV         R13,R4
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    7
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          main.c   128                    id_level++;
+    00000190 7E01                   ADD         #1,R14
+          main.c   129                    level = load_level(id_level);
+    00000192 4C0B                   JSR         @R12
+    00000194 64E3                   MOV         R14,R4
+    00000196 3E93                   CMP/GE      R9,R14
+    00000198 8FF6                   BF/S        L395
+    0000019A 6D03                   MOV         R0,R13
+          main.c   130            }
+          main.c   131            while(game(level))
+    0000019C A007                   BRA         L396
+    0000019E 0009                   NOP
+    000001A0              L397:                             
+          main.c   132            {
+          main.c   133                    end(1);
+    000001A0 BF54                   BSR         _end
+    000001A2 E401                   MOV         #1,R4
+          main.c   134                    free_level(level);
+    000001A4 4B0B                   JSR         @R11
+    000001A6 64D3                   MOV         R13,R4
+          main.c   135                    level = load_level(id_level);
+    000001A8 4C0B                   JSR         @R12
+    000001AA 64E3                   MOV         R14,R4
+    000001AC 6D03                   MOV         R0,R13
+    000001AE              L396:                             
+    000001AE 4A0B                   JSR         @R10
+    000001B0 64D3                   MOV         R13,R4
+    000001B2 2008                   TST         R0,R0
+    000001B4 8BF4                   BF          L397
+          main.c   136            }
+          main.c   137            free_level(level);
+          main.c   138            id_level++;
+          main.c   139            level = load_level(id_level);
+          main.c   140            while(level)
+    000001B6 A002                   BRA         L402
+    000001B8 0009                   NOP
+    000001BA              L399:                             
+          main.c   141            {
+          main.c   142                    game(level);
+    000001BA 4A0B                   JSR         @R10
+    000001BC 64D3                   MOV         R13,R4
+          main.c   143                    free_level(level);
+          main.c   144                    id_level++;
+          main.c   145                    level = load_level(id_level);
+    000001BE              L402:                             
+    000001BE 4B0B                   JSR         @R11
+    000001C0 64D3                   MOV         R13,R4
+    000001C2 7E01                   ADD         #1,R14
+    000001C4 4C0B                   JSR         @R12
+    000001C6 64E3                   MOV         R14,R4
+    000001C8 6D03                   MOV         R0,R13
+    000001CA 2DD8                   TST         R13,R13
+    000001CC 8BF5                   BF          L399
+          main.c   146            }
+          main.c   147            end(2);
+    000001CE BF3D                   BSR         _end
+    000001D0 E402                   MOV         #2,R4
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    8
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+          main.c   148            return 1;
+    000001D2 E001                   MOV         #1,R0
+          main.c   149    }
+    000001D4              L394:                             
+    000001D4 4F26                   LDS.L       @R15+,PR
+    000001D6 69F6                   MOV.L       @R15+,R9
+    000001D8 6AF6                   MOV.L       @R15+,R10
+    000001DA 6BF6                   MOV.L       @R15+,R11
+    000001DC 6CF6                   MOV.L       @R15+,R12
+    000001DE 6DF6                   MOV.L       @R15+,R13
+    000001E0 000B                   RTS
+    000001E2 6EF6                   MOV.L       @R15+,R14
+    000001E4              L404:                             
+    000001E4 <00000000>             .DATA.L     _time
+    000001E8 <00000000>             .DATA.L     _srand
+    000001EC <00000000>             .DATA.L     _draw_init
+    000001F0 <00000000>             .DATA.L     _load_level
+    000001F4 <00000000>             .DATA.L     _game
+    000001F8 <00000000>             .DATA.L     _free_level
+          main.c   150    
+          main.c   151    
+          main.c   152    #pragma section _BR_Size
+          main.c   153    unsigned long BR_Size;
+          main.c   154    #pragma section
+          main.c   155    
+          main.c   156    #pragma section _TOP
+          main.c   157    
+          main.c   158    int InitializeSystem(int isAppli, unsigned short OptionNum)
+P_T 00000000              _InitializeSystem:               ; function: InitializeSystem
+                                                           ; frame size=0
+          main.c   159    {
+          main.c   160        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+    00000000 D301                   MOV.L       L405+2,R3  ; _INIT_ADDIN_APPLICATION
+    00000002 432B                   JMP         @R3
+    00000004 0009                   NOP
+    00000006              L405:                             
+    00000006 0000                   .DATA.W     0
+    00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
+          main.c   161    }
+          main.c   162    
+          main.c   163    #pragma section
+C   00000000              L342:
+    00000000 FFFFFFFFFF             .DATA.B     H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'E3,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'F8,H'3F,H'FF,H'E3,H'FF,H'FF,H'FF,H'FF,H'FF,H'3F,H'FF,H'FF,H'F7,H'7F,H'FF,
+             FFFFFFFFFF +                       H'FF,H'E0,H'0F,H'FF,H'E1,H'FF,H'FF,H'FF,H'FF,H'FF,H'7F,H'F1,H'FF,H'F7,H'FF,H'C7,
+             FFFFFFFFFF +                       H'FF,H'C0,H'0F,H'F1,H'80,H'70,H'FF,H'FF,H'FF,H'FE,H'26,H'67,H'91,H'11,H'64,H'77,
+             FFFFFFFFFF +                       H'FF,H'83,H'86,H'00,H'80,H'60,H'7F,H'FF,H'FF,H'FF,H'5A,H'EC,H'B1,H'55,H'5C,H'EF,
+             FFFFFFFFFF +                       H'FF,H'87,H'C6,H'00,H'C0,H'C0,H'3F,H'FF,H'FF,H'FF,H'5A,H'EE,H'AD,H'55,H'5F,H'5F,
+             FFFFFFFFFF +                       H'FF,H'0F,H'C2,H'08,H'E3,H'86,H'38,H'FF,H'FF,H'FF,H'66,H'F0,H'A1,H'15,H'64,H'47,
+             FFFFE3FFFF +                       H'FF,H'0F,H'E3,H'1C,H'E3,H'8F,H'38,H'1F,H'FF,H'FF,H'FF,H'FF,H'FF,H'7F,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'1F,H'E3,H'1F,H'E3,H'9F,H'30,H'0F,H'FF,H'FF,H'FF,H'FF,H'FF,H'7F,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'1F,H'E3,H'1F,H'E3,H'9E,H'30,H'8F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             F83FFFE3FF +                       H'FF,H'0F,H'E3,H'1F
+             FFFFFFFF3F   
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    9
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+             FFFFF77FFF   
+             FFE00FFFE1   
+             FFFFFFFFFF   
+             7FF1FFF7FF   
+             C7FFC00FF1   
+             8070FFFFFF   
+             FE26679111   
+             6477FF8386   
+             0080607FFF   
+             FFFF5AECB1   
+             555CEFFF87   
+             C600C0C03F   
+             FFFFFF5AEE   
+             AD555F5FFF   
+             0FC208E386   
+             38FFFFFF66   
+             F0A1156447   
+             FF0FE31CE3   
+             8F381FFFFF   
+             FFFFFF7FFF   
+             FFFF1FE31F   
+             E39F300FFF   
+             FFFFFFFF7F   
+             FFFFFF1FE3   
+             1FE39E308F   
+             FFFFFFFFFF   
+             FFFFFFFF0F   
+             E31F         
+    000000D4 E38E319FFF             .DATA.B     H'E3,H'8E,H'31,H'9F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'8F,H'E3,H'9F,
+             FFFFFFFFFF +                       H'E3,H'84,H'63,H'1F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'8F,H'C7,H'9F,
+             FFFFFF8FE3 +                       H'E3,H'C0,H'E3,H'3F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'C7,H'C7,H'9F,
+             9FE384631F +                       H'FF,H'E1,H'E6,H'7F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'C3,H'87,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'E6,H'7F,H'FF,H'FF,H'FF,H'FF,H'FE,H'00,H'01,H'FF,H'FF,H'E0,H'0F,H'FF,
+             FFFFFFFF8F +                       H'FF,H'FF,H'FE,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'00,H'01,H'FF,H'FF,H'F0,H'1F,H'FF,
+             C79FE3C0E3 +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FC,H'7F,H'FF,
+             3FFFFFFFFF +                       H'9F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'8F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FF,
+             C7C79FFFE1 +                       H'0F,H'FF,H'FC,H'FF,H'FD,H'FF,H'FF,H'FF,H'FE,H'1E,H'79,H'FF,H'FF,H'FF,H'FF,H'FF,
+             E67FFFFFFF +                       H'4F,H'2F,H'FC,H'FF,H'FD,H'FF,H'0F,H'FF,H'FE,H'1E,H'79,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'6F,H'07,H'FD,H'FF,H'FC,H'FE,H'27,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FE,
+             FFC387FFFF +                       H'6F,H'17,H'01,H'FF,H'3C,H'CE,H'6F,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FE,
+             FFE67FFFFF +                       H'07,H'36,H'61,H'FF
+             FFFFFE0001   
+             FFFFE00FFF   
+             FFFFFEFFFF   
+             FFFFFFFE00   
+             01FFFFF01F   
+             FFFFFFFFFF   
+             FFFFFFFFFE   
+             7FF9FFFFFC   
+             7FFF9FFFFF   
+             FFFFFFFFFF   
+             FE7FF9FFFF   
+             FFFFFF8FFF   
+             FFFFFFFFFF   
+             FFFE7FF9FF   
+             FFFFFFFF0F   
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE   10
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+             FFFCFFFDFF   
+             FFFFFE1E79   
+             FFFFFFFFFF   
+             4F2FFCFFFD   
+             FF0FFFFE1E   
+             79FFFFFFFF   
+             FF6F07FDFF   
+             FCFE27FFFE   
+             7FF9FFFFFF   
+             FFFE6F1701   
+             FF3CCE6FFF   
+             FE7FF9FFFF   
+             FFFFFE0736   
+             61FF         
+    000001A8 1C86CFFFFE             .DATA.B     H'1C,H'86,H'CF,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FE,H'07,H'36,H'F3,H'FE,
+             7FF9FFFFFF +                       H'0C,H'26,H'1F,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FC,H'67,H'76,H'F3,H'FE,
+             FFFE0736F3 +                       H'0E,H'72,H'33,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FC,H'F3,H'66,H'F3,H'FF,
+             FE0C261FFF +                       H'3E,H'73,H'07,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FC,H'FF,H'66,H'63,H'FF,
+             FE7FF9FFFF +                       H'3E,H'73,H'9F,H'FF,H'FE,H'7F,H'F9,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'07,H'FF,
+             FFFFFC6776 +                       H'3E,H'79,H'FF,H'FF,H'FE,H'00,H'01,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'E7,H'FF,
+             F3FE0E7233 +                       H'3E,H'7F,H'FF,H'FF,H'FE,H'00,H'01,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFE7FF9FF +                       H'3E,H'7F,H'FF,H'FF,H'FF,H'E7,H'9F,H'FF,H'FF,H'FF,H'F8,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFCF3 +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'E7,H'9F,H'FF,H'FF,H'FF,H'F0,H'3F,H'FF,H'FF,H'FF,H'FF,
+             66F3FF3E73 +                       H'FF,H'FF,H'FF,H'C3,H'FF,H'E7,H'FF,H'FF,H'FF,H'FF,H'F0,H'1F,H'FF,H'FF,H'FF,H'FF,
+             07FFFE7FF9 +                       H'FF,H'FF,H'FF,H'81,H'FF,H'FF,H'F3,H'FF,H'FF,H'FF,H'F3,H'0F,H'FF,H'9F,H'FF,H'FF,
+             FFFFFFFFFC +                       H'FF,H'FF,H'FF,H'09,H'FF,H'F9,H'F3,H'FF,H'FF,H'FF,H'E3,H'8F,H'FF,H'0F,H'FF,H'FF,
+             FF6663FF3E +                       H'FF,H'FF,H'8E,H'3F,H'FF,H'F9,H'FF,H'FF,H'FF,H'FF,H'E3,H'CF,H'FF,H'9F,H'FF,H'FF,
+             739FFFFE7F +                       H'FF,H'FE,H'06,H'3F
+             F9FFFFFFFF   
+             FFFFFF07FF   
+             3E79FFFFFE   
+             0001FFFFFF   
+             FFFFFFFFE7   
+             FF3E7FFFFF   
+             FE0001FFFF   
+             FFFFFFFFFF   
+             FFFF3E7FFF   
+             FFFFE79FFF   
+             FFFFF8FFFF   
+             FFFFFFFFFF   
+             FFFFFFE79F   
+             FFFFFFF03F   
+             FFFFFFFFFF   
+             FFFFC3FFE7   
+             FFFFFFFFF0   
+             1FFFFFFFFF   
+             FFFFFF81FF   
+             FFF3FFFFFF   
+             F30FFF9FFF   
+             FFFFFFFF09   
+             FFF9F3FFFF   
+             FFE38FFF0F   
+             FFFFFFFF8E   
+             3FFFF9FFFF   
+             FFFFE3CFFF   
+             9FFFFFFFFE   
+             063F         
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE   11
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000027C FFFFFFFFFF             .DATA.B     H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'E3,H'CF,H'FF,H'FF,H'FF,H'FF,H'FC,H'3C,H'07,H'00,
+             FFE3CFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'C1,H'0E,H'7F,H'FF,H'FF,H'FF,H'F0,H'1C,H'FF,H'F8,
+             FFFFFC3C07 +                       H'7F,H'FF,H'FF,H'FF,H'FF,H'FF,H'C0,H'1E,H'03,H'FE,H'67,H'C1,H'E0,H'1C,H'7F,H'FC,
+             00FFFFFFFF +                       H'7F,H'FF,H'FF,H'FF,H'FF,H'FF,H'80,H'3C,H'01,H'9C,H'43,H'80,H'E3,H'1E,H'07,H'90,
+             FFFFC10E7F +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'8F,H'FC,H'11,H'9C,H'03,H'8C,H'C6,H'3F,H'E3,H'80,
+             FFFFFFF01C +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'8F,H'FC,H'71,H'9C,H'33,H'1F,H'C0,H'7F,H'F3,H'C3,
+             FFF87FFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'0F,H'FC,H'7B,H'9C,H'33,H'1F,H'C1,H'FE,H'C3,H'FF,
+             FFFFFFC01E +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'1F,H'F8,H'FF,H'1C,H'73,H'3F,H'C7,H'CE,H'03,H'FF,
+             03FE67C1E0 +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'9F,H'F8,H'FF,H'1C,H'73,H'3F,H'C3,H'0F,H'0F,H'FF,
+             1C7FFC7FFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'F8,H'FF,H'1C,H'73,H'0C,H'60,H'1F,H'FF,H'FF,
+             FFFFFFFF80 +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'F8,H'FF,H'1C,H'73,H'80,H'70,H'3F,H'FF,H'FF,
+             3C019C4380 +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'1C,H'73,H'C1,H'FF,H'FF,H'FF,H'FF,
+             E31E0790FF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'7F,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF
+             8FFC119C03   
+             8CC63FE380   
+             FFFFFFFFFF   
+             FF8FFC719C   
+             331FC07FF3   
+             C3FFFFFFFF   
+             FFFF0FFC7B   
+             9C331FC1FE   
+             C3FFFFFFFF   
+             FFFFFF1FF8   
+             FF1C733FC7   
+             CE03FFFFFF   
+             FFFFFFFF9F   
+             F8FF1C733F   
+             C30F0FFFFF   
+             FFFFFFFFFF   
+             FFF8FF1C73   
+             0C601FFFFF   
+             FFFFFFFFFF   
+             FFFFF8FF1C   
+             7380703FFF   
+             FFFFFFFFFF   
+             FFFFFFFFFF   
+             1C73C1FFFF   
+             FFFFFFFFFF   
+             FFFFFFFFFF   
+             FFFE7FFFFF   
+             FFFFFFFFFF   
+             FFFF         
+    00000350 FFFFFFFFFF             .DATA.B     H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'DF,H'FF,H'7F,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'7F,H'FF,H'FF,H'5F,H'FF,H'5F,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'B7,H'FF,H'FF,H'DB,H'FF,H'7F,H'FF,H'77,H'7F,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'6A,H'44,H'11,H'55,H'FC,H'51,H'82,H'A2,H'AB,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'A6,H'D5,H'55,H'53,H'0D,H'55,H'AA,H'76,H'67,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'AE,H'D5,H'55,H'57,H'FD,H'55,H'AA,H'F6,H'EF,
+             FFFFDFFF7F +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'A2,H'45,H'51,H'51,H'FC,H'50,H'AA,H'32,H'2F,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'F7,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFE +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF
+             7FFFFF5FFF   
+             5FFFFFFFFF   
+             FFFFFFFFFF   
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE   12
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+             FEB7FFFFDB   
+             FF7FFF777F   
+             FFFFFFFFFF   
+             FFFE6A4411   
+             55FC5182A2   
+             ABFFFFFFFF   
+             FFFFFEA6D5   
+             55530D55AA   
+             7667FFFFFF   
+             FFFFFFFEAE   
+             D55557FD55   
+             AAF6EFFFFF   
+             FFFFFFFFFE   
+             A2455151FC   
+             50AA322FFF   
+             FFFFFFFFFF   
+             FFFFFFF7FF   
+             FFFFFFFFFF   
+             FFFFFFFFFF   
+             FFFFFFFFFF   
+             FFFFFFFFFF   
+             FF           
+    00000400              L349:
+    00000400 FFFFFFFFFF             .DATA.B     H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'00,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFE00 +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'00,H'7F,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FC,H'EF,H'FF,H'FF,H'FE,H'00,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'C0,H'47,H'FF,H'FF,H'FE,H'3F,H'FF,H'FF,H'CF,H'FF,H'FF,H'FF,
+             FFFFFFFFFE +                       H'FF,H'FF,H'FF,H'FC,H'00,H'47,H'FF,H'FF,H'FE,H'3F,H'FF,H'FB,H'FF,H'E3,H'F1,H'98,
+             007FFFFFFF +                       H'07,H'FE,H'00,H'9C,H'86,H'3F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'E3,H'F1,H'9C,
+             FFFFFFFFFF +                       H'0F,H'FF,H'00,H'9C,H'C0,H'3F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'E3,H'F1,H'FF,
+             FFFCEFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'E0,H'7F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'F3,H'FF,H'FF,
+             FE00FFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'F8,H'7F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'F3,H'FF,H'FF,
+             FFFFFFFFFF +                       H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF,H'FF
+             FFFFC047FF   
+             FFFE3FFFFF   
+             CFFFFFFFFF   
+             FFFFFC0047   
+             FFFFFE3FFF   
+             FBFFE3F198   
+             07FE009C86   
+             3FFFFFFFFF   
+             FFFFFFE3F1   
+             9C0FFF009C   
+             C03FFFFFFF   
+             FFFFFFFFE3   
+             F1FFFFFFFF   
+             FFE07FFFFF   
+             FFFFFFFFFF   
+             F3FFFFFFFF   
+             FFFFF87FFF   
+             FFFFFFFFFF   
+             FFF3FFFFFF   
+             FFFFFFFFFF   
+             FFFFFF       
+    00000499 00000001               .RES.B      1
+    0000049A 00000002               .RES.W      1
+    0000049C              L352:
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE   13
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000049C 446F682021             .SDATA      "Doh ! Looks like you missed"
+             204C6F6F6B   
+             73206C696B   
+             6520796F75   
+             206D697373   
+             6564         
+    000004B7 00                     .DATA.B     H'00
+    000004B8              L353:
+    000004B8 7468652073             .SDATA      "the secret ending..."
+             6563726574   
+             20656E6469   
+             6E672E2E2E   
+    000004CC 00                     .DATA.B     H'00
+    000004CD 00000001               .RES.B      1
+    000004CE 00000002               .RES.W      1
+    000004D0              L354:
+    000004D0 5072657373             .SDATA      "Press EXE if you want to find it."
+             2045584520   
+             696620796F   
+             752077616E   
+             7420746F20   
+             66696E6420   
+             69742E       
+    000004F1 00                     .DATA.B     H'00
+    000004F2 00000002               .RES.W      1
+    000004F4              L355:
+    000004F4 2E2E2E616E             .SDATA      "...and they lived happily"
+             6420746865   
+             79206C6976   
+             6564206861   
+             7070696C79   
+    0000050D 00                     .DATA.B     H'00
+    0000050E 00000002               .RES.W      1
+    00000510              L356:
+    00000510 6576657220             .SDATA      "ever after."
+             6166746572   
+             2E           
+    0000051B 00                     .DATA.B     H'00
+    0000051C              L357:
+    0000051C 57656C6C2C             .SDATA      "Well, almost."
+             20616C6D6F   
+             73742E       
+    00000529 00                     .DATA.B     H'00
+B   00000000              _exit_jmp:                       ; static: exit_jmp
+    00000000 00000050               .RES.L      20
+B_B 00000000              _BR_Size:                        ; static: BR_Size
+    00000000 00000004               .RES.L      1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 14-Jun-2013 09:15:34  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:        10
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:      163
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               000001FC Byte(s)
+PROGRAM  SECTION (P_BR_Size):                       00000000 Byte(s)
+PROGRAM  SECTION (P_TOP):                           0000000C Byte(s)
+CONSTANT SECTION (C):                               0000052A Byte(s)
+CONSTANT SECTION (C_BR_Size):                       00000000 Byte(s)
+CONSTANT SECTION (C_TOP):                           00000000 Byte(s)
+DATA     SECTION (D):                               00000000 Byte(s)
+DATA     SECTION (D_BR_Size):                       00000000 Byte(s)
+DATA     SECTION (D_TOP):                           00000000 Byte(s)
+BSS      SECTION (B):                               00000050 Byte(s)
+BSS      SECTION (B_BR_Size):                       00000004 Byte(s)
+BSS      SECTION (B_TOP):                           00000000 Byte(s)
+
+ TOTAL PROGRAM SIZE: 00000786 Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:           14
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:           6
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            46
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\ADMINI~1\AppData\Local\Temp\hmk97B0.tmp 
+
